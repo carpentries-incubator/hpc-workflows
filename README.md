@@ -31,6 +31,7 @@ This is a translation of the [old HPC Workflows lesson][workflows] using
 <!-- HPC Carpentry links -->
 
 [amdahl]: https://github.com/hpc-carpentry/amdahl
+[hpc-intro]: https://carpentries-incubator.github.io/hpc-intro/
 [workflows]: https://github.com/hpc-carpentry/hpc-workflows.old
 
 <!-- The Carpentries links -->
