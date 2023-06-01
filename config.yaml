@@ -59,7 +59,12 @@ contact: 'team@carpentries.org' # FIXME
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.Rmd
+- amdahl_foundation.md
+- snakemake_single.md
+- snakemake_multiple.md
+- snakemake_cluster.md
+- snakemake_profiles.md
+- amdahl_snakemake.md
 
 # Information for Learners
 learners: 
