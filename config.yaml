@@ -61,6 +61,9 @@ contact: 'team@carpentries.org' # FIXME
 episodes: 
 - amdahl_foundation.md
 - snakemake_single.md
+- snakemake_multiple.md
+- snakemake_cluster.md
+- snakemake_profiles.md
 
 # Information for Learners
 learners: 
