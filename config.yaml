@@ -64,6 +64,7 @@ episodes:
 - snakemake_multiple.md
 - snakemake_cluster.md
 - snakemake_profiles.md
+- amdahl_snakemake.md
 
 # Information for Learners
 learners: 
