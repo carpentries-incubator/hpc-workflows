@@ -148,7 +148,52 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Using RMarkdown</a>
+        <a href="amdahl_foundation.html">1. Running a Parallel Application on the Cluster</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="snakemake_single.html">2. Introduction to Snakemake</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="snakemake_multiple.html">3. More Complicated Snakefiles</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="snakemake_cluster.html">4. Snakemake and the Cluster</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="snakemake_profiles.html">5. Snakemake Profiles</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="amdahl_snakemake.html">6. Amdahl Parallel Runs</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -195,11 +240,11 @@
         <!-- START: inst/pkgdown/templates/content-syllabus.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link float-end" href="../instructor/introduction.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/amdahl_foundation.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="../instructor/introduction.html" rel="next">Next: Using RMarkdown... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/amdahl_foundation.html" rel="next">Next: Running a Parallel... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Schedule</h1>
       
@@ -217,13 +262,62 @@ any links that you are not going to use.
 <span class="visually-hidden">Duration: </span>00h 00m
 </td>
 <td>
- 1. <a href="introduction.html">Using RMarkdown</a>
+ 1. <a href="amdahl_foundation.html">Running a Parallel Application on
+the Cluster</a>
 </td>
 <td>
-How do you write a lesson using R Markdown and <a href="https://carpentries.github.io/sandpaper/" class="external-link">sandpaper</a>?
+What output does the Amdahl code generate?<br>Why does parallelizing
+the amdahl code make it faster?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 12m
+</td>
+<td>
+ 2. <a href="snakemake_single.html">Introduction to Snakemake</a>
+</td>
+<td>
+What are Snakemake rules?<br>Why do Snakemake rules not always run?
+</td>
+</tr><tr><td>
+<span class="visually-hidden">Duration: </span>00h 24m
+</td>
+<td>
+ 3. <a href="snakemake_multiple.html">More Complicated Snakefiles</a>
+</td>
+<td>
+What is a task graph?<br>How does the Snakemake file express a task
+graph?
+</td>
+</tr><tr><td>
+<span class="visually-hidden">Duration: </span>00h 36m
+</td>
+<td>
+ 4. <a href="snakemake_cluster.html">Snakemake and the Cluster</a>
+</td>
+<td>
+How can we express a one-task cluster operation in Snakemake?
+</td>
+</tr><tr><td>
+<span class="visually-hidden">Duration: </span>00h 48m
+</td>
+<td>
+ 5. <a href="snakemake_profiles.html">Snakemake Profiles</a>
+</td>
+<td>
+How can we encapsulate our desired snakemake configuration?<br>How do
+we balance non-reptition and customizability?
+</td>
+</tr><tr><td>
+<span class="visually-hidden">Duration: </span>01h 00m
+</td>
+<td>
+ 6. <a href="amdahl_snakemake.html">Amdahl Parallel Runs</a>
+</td>
+<td>
+How can we collect data on Amdahl run times?
+</td>
+</tr><tr><td>
+<span class="visually-hidden">Duration: </span>01h 12m
 </td>
 <td>
 Finish
@@ -271,7 +365,7 @@ e.g. online setup) in the solutions blocks.</p>
   Windows
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Use PuTTY</p>
 </div>
@@ -285,7 +379,7 @@ e.g. online setup) in the solutions blocks.</p>
   MacOS
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Use Terminal.app</p>
 </div>
@@ -299,7 +393,7 @@ e.g. online setup) in the solutions blocks.</p>
   Linux
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Use Terminal</p>
 </div>
@@ -311,11 +405,11 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
 </section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link float-end" href="../instructor/introduction.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/amdahl_foundation.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="../instructor/introduction.html" rel="next">Next: Using RMarkdown... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/amdahl_foundation.html" rel="next">Next: Running a Parallel... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
     </nav></div>
 <!-- END  : inst/pkgdown/templates/content-syllabus.html -->
@@ -359,9 +453,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/index.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/index.html",
-  "dateCreated": "2023-04-20",
-  "dateModified": "2023-05-30",
-  "datePublished": "2023-05-30"
+  "dateCreated": "2023-06-01",
+  "dateModified": "2023-06-01",
+  "datePublished": "2023-06-01"
 }
 
   </script><script>

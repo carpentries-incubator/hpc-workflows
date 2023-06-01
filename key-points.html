@@ -179,7 +179,67 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Using RMarkdown</a>
+        <a href="amdahl_foundation.html">1. Running a Parallel Application on the Cluster</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="snakemake_single.html">2. Introduction to Snakemake</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="snakemake_multiple.html">3. More Complicated Snakefiles</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="snakemake_cluster.html">4. Snakemake and the Cluster</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="snakemake_profiles.html">5. Snakemake Profiles</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="amdahl_snakemake.html">6. Amdahl Parallel Runs</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -241,17 +301,36 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="introduction"><h2 class="section-heading"><a href="introduction.html">Using RMarkdown</a></h2>
+<section id="amdahl_foundation"><h2 class="section-heading"><a href="amdahl_foundation.html">Running a Parallel Application on the Cluster</a></h2>
 <hr class="half-width">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>The amdahl code is a model of a parallel application</li>
+<li>The execution speed depends on the degree of parallelism</li>
+</ul></section><section id="snakemake_single"><h2 class="section-heading"><a href="snakemake_single.html">Introduction to Snakemake</a></h2>
+<hr class="half-width">
+<ul>
+<li>Snakemake is an indirect way of running executables</li>
+<li>Snakemake has a notion of system state, and can be fooled.</li>
+</ul></section><section id="snakemake_multiple"><h2 class="section-heading"><a href="snakemake_multiple.html">More Complicated Snakefiles</a></h2>
+<hr class="half-width">
+<ul>
+<li>Snakemake rule files can be mapped to task graphs</li>
+<li>Tasks are executed as required in dependency order</li>
+<li>Where possible, tasks may run concurrently.</li>
+</ul></section><section id="snakemake_cluster"><h2 class="section-heading"><a href="snakemake_cluster.html">Snakemake and the Cluster</a></h2>
+<hr class="half-width">
+<ul>
+<li>Snakemake rule files can submit cluster jobs.</li>
+<li>There are a lot of options.</li>
+</ul></section><section id="snakemake_profiles"><h2 class="section-heading"><a href="snakemake_profiles.html">Snakemake Profiles</a></h2>
+<hr class="half-width">
+<ul>
+<li>Snakemake profiles encapsulate cluster complexity.</li>
+<li>Retaining operational flexibliity is also important.</li>
+</ul></section><section id="amdahl_snakemake"><h2 class="section-heading"><a href="amdahl_snakemake.html">Amdahl Parallel Runs</a></h2>
+<hr class="half-width">
+<ul>
+<li>A relatively compact snakemake file collects interesting data.</li>
 </ul></section>
 </div>
     </main>
@@ -300,9 +379,9 @@ locally</li>
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-rmd/key-points.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/key-points.html",
-  "dateCreated": "2023-04-20",
-  "dateModified": "2023-05-30",
-  "datePublished": "2023-05-30"
+  "dateCreated": "2023-06-01",
+  "dateModified": "2023-06-01",
+  "datePublished": "2023-06-01"
 }
 
   </script><script>
