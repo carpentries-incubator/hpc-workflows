@@ -403,7 +403,7 @@ the speed, or equivalently, that it would complete in 2/3 the time.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The amdahl code runs faster with 3 processors than with 2, but the
 speed-up is less than 1.5x.</p>
@@ -503,7 +503,7 @@ does Snakemake do nontrivial work?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The rule does not get executed the seconed time. The Snakemake
 infrastructure is stateful, and knows that the required outputs are up
@@ -718,7 +718,7 @@ task?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Use the “mpi” option in the resource block of the Snakemake rule, and
 specify the number of tasks. This will be mapped to the <code>-n</code>
@@ -998,8 +998,8 @@ any links that you are not going to use.
   "url": "https://carpentries-incubator.github.io/hpc-workflows/aio.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-workflows/aio.html",
   "dateCreated": "2023-04-19",
-  "dateModified": "2023-06-20",
-  "datePublished": "2023-06-20"
+  "dateModified": "2023-06-27",
+  "datePublished": "2023-06-27"
 }
 
   </script><script>
