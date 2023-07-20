@@ -103,8 +103,6 @@ than 2. The naive estimate would be that it would run
 1.5× the speed, or equivalently, that it would
 complete in 2/3 the time.
 
-::::::::::::::::::::::::::::::::::::::
-
 :::::::::::::::: solution
 
 ``` shell
@@ -117,6 +115,8 @@ The amdahl code runs faster with 3 processors than with
 2, but the speed-up is less than 1.5×.
 
 :::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::: keypoints
 

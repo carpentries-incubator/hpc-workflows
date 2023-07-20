@@ -43,13 +43,11 @@ Throw the switch!
 Remove the output file, and run Snakemake. Then
 run it again. Edit the output file, and run it
 a third time. For which of these invocations
-does Snakemake do nontrivial work?
-
-::::::::::::::::::::::::::::::::::::::::
+does Snakemake do non-trivial work?
 
 :::::::::::::::: solution
 
-The rule does not get executed the seconed time. The
+The rule does not get executed the second time. The
 Snakemake infrastructure is stateful, and knows that
 the required outputs are up to date.
 
@@ -60,6 +58,8 @@ checks the file time-stamp. Editing Snakemake-manipulated
 files can get you into an inconsistent state.
 
 :::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::: keypoints
 

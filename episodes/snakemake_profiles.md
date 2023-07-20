@@ -49,8 +49,6 @@ Write a profile that allows you to choose a
 different partition, in addition to the level of
 parallelism.
 
-::::::::::::::::::::::::::::::::::::::::
-
 :::::::::::::::: solution
 
 The profile files can have variables taken from
@@ -58,6 +56,8 @@ the rule file, and in particular can refer to
 resources from a rule.
 
 :::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::: keypoints
 

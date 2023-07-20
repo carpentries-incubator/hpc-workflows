@@ -52,8 +52,6 @@ Draw the task graph for your Snakefile.
 Given an example task graph, write a Snakefile that
 implements it.
 
-::::::::::::::::::::::::::::::::::::::::
-
 :::::::::::::::: solution
 
 The rules in the snakefile are nodes in the task
@@ -67,6 +65,8 @@ A rule with an output that no other rules consumes is
 a terminal rule.
 
 :::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::: keypoints
 

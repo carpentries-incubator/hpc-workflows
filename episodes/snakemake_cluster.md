@@ -44,8 +44,6 @@ Throw the switch!
 How can you control the degree of parallelism
 of your cluster task?
 
-::::::::::::::::::::::::::::::::::::::::
-
 :::::::::::::::: solution
 
 Use the "mpi" option in the resource block of
@@ -54,6 +52,8 @@ This will be mapped to the `-n` argument of the
 equivalent `sbatch` command.
 
 :::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::: keypoints
 

@@ -43,8 +43,6 @@ Our example has a single paramter, the parallelism,
 that we vary. How would you generalize this to arbitrary
 parameters?
 
-::::::::::::::::::::::::::::::::::::::::
-
 :::::::::::::::: solution
 
 Arbitrary parameters are still finite, so you could
@@ -53,6 +51,8 @@ over that. Or you could generate two lists and do a nested
 loop.
 
 :::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::: keypoints
 
