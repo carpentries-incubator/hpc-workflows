@@ -4,19 +4,18 @@ teaching: 10
 exercises: 2
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+:::::::::::::::::::::::::::::: questions
 
 - How can we express a one-task cluster operation in Snakemake?
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: objectives
+::::::::::::::::::::::::::::: objectives
 
 - Write a Snakefile that executes a job on the cluster
 - Use MPI options to ensure the job runs in parallel
 
-
-:::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
 
 ## Snakemake and the Cluster
 
@@ -40,25 +39,25 @@ to do the cluster operations by hand.
 
 Throw the switch!
 
-::::::::::::::::::::::::::::::::::::: challenge
+:::::::::::::::::::::::::::::: challenge
 
 How can you control the degree of parallelism
 of your cluster task?
 
-:::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: solution
+:::::::::::::::: solution
 
 Use the "mpi" option in the resource block of
 the Snakemake rule, and specify the number of tasks.
-This will be mapped to the `-n` argument of the 
+This will be mapped to the `-n` argument of the
 equivalent `sbatch` command.
 
-::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: keypoints 
+:::::::::::::::::::::::::::::: keypoints
 
-- Snakemake rule files can submit cluster jobs. 
+- Snakemake rule files can submit cluster jobs.
 - There are a lot of options.
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::

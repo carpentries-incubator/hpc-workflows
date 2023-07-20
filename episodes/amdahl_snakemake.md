@@ -4,24 +4,24 @@ teaching: 10
 exercises: 2
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+:::::::::::::::::::::::::::::: questions
 
-- How can we collect data on Amdahl run times? 
+- How can we collect data on Amdahl run times?
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: objectives
+::::::::::::::::::::::::::::: objectives
 
 - Collect systematic data on the runtime of the amdahl code
 
-:::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
 
 ## Systematic Data Collection
 
 Using what we have learned so far, including Snakemake
 profiles and rules, we will now compose a Snakefile
 that runs the Amdahl example code over a range of
-parallel widths. This workflow will generate the 
+parallel widths. This workflow will generate the
 data we will use in the next module to demonstrate
 the diminishing returns of increasing parallelism.
 
@@ -37,25 +37,25 @@ to ensure that the jobs run on the cluster.
 
 Throw the switch!
 
-::::::::::::::::::::::::::::::::::::: challenge
+:::::::::::::::::::::::::::::: challenge
 
 Our example has a single paramter, the parallelism,
 that we vary. How would you generalize this to arbitrary
 parameters?
 
-:::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: solution
+:::::::::::::::: solution
 
 Arbitrary parameters are still finite, so you could
 just generate a flat list of all the combinations, and iterate
 over that. Or you could generate two lists and do a nested
-loop. 
+loop.
 
-::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: keypoints 
+:::::::::::::::::::::::::::::: keypoints
 
 - A relatively compact snakemake file collects interesting data.
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
