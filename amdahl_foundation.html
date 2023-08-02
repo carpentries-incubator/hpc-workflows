@@ -260,7 +260,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Running a Parallel Application on the Cluster</h1>
-        <p> Last updated on 2023-06-01 | 
+        <p> Last updated on 2023-08-02 | 
         
         <a href="https://github.com/carpentries-incubator/hpc-workflows/edit/main/episodes/amdahl_foundation.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -332,11 +332,32 @@ execution time.</p>
 </div>
 </section><section id="the-amdahl-code"><h2 class="section-heading">The Amdahl Code<a class="anchor" aria-label="anchor" href="#the-amdahl-code"></a>
 </h2>
-<hr class="half-width"><p>Download it and install it, via pip.</p>
+<hr class="half-width"><p>Download it and install it, via pip. Note that <code>amdahl</code>
+depends on MPI, so make sure that’s also available.</p>
+<p>On the HPC Carpentry cluster:</p>
+<pre class="shell"><code>[user@login1 ~]$ module load OpenMPI
+[user@login1 ~]$ module load Python
+[user@login1 ~]$ pip install amdahl</code></pre>
 </section><section id="running-it-on-the-cluster"><h2 class="section-heading">Running It on the Cluster<a class="anchor" aria-label="anchor" href="#running-it-on-the-cluster"></a>
 </h2>
 <hr class="half-width"><p>Use the <code>sacct</code> command to see the run-time. The run-time
 is also recorded in the output itself.</p>
+<pre class="shell"><code>[user@login1 ~]$ nano amdahl_1.sh</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 00:01          # max 1 minute</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -p smnodes        # max 4 cores</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -n 1              # use 1 core</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -o amdahl-np1.out # record result</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load OpenMPI</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load Python</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mpirun</span> amdahl</span></code></pre>
+</div>
+<pre class="shell"><code>[user@login1 ~]$ sbatch amdahl_1.sh</code></pre>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -347,7 +368,7 @@ is also recorded in the output itself.</p>
 <div class="callout-content">
 <p>Run the amdhal code with a few (small!) levels of parallelism. Make a
 quantitative estimate of how much faster the code will run with 3
-processors than 2. The naive estimate would be that it would run 1.5x
+processors than 2. The naive estimate would be that it would run 1.5×
 the speed, or equivalently, that it would complete in 2/3 the time.</p>
 </div>
 </div>
@@ -361,8 +382,11 @@ the speed, or equivalently, that it would complete in 2/3 the time.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
+<pre class="shell"><code>[user@login1 ~]$ sbatch amdahl_1.sh  # serial job     ~ 25 sec
+[user@login1 ~]$ sbatch amdahl_2.sh  # 2-way parallel ~ 20 sec
+[user@login1 ~]$ sbatch amdahl_3.sh  # 3-way parallel ~ 16 sec</code></pre>
 <p>The amdahl code runs faster with 3 processors than with 2, but the
-speed-up is less than 1.5x.</p>
+speed-up is less than 1.5×.</p>
 </div>
 </div>
 </div>
@@ -437,8 +461,8 @@ any links that you are not going to use.
   "url": "https://carpentries-incubator.github.io/hpc-workflows/amdahl_foundation.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-workflows/amdahl_foundation.html",
   "dateCreated": "2023-04-19",
-  "dateModified": "2023-06-01",
-  "datePublished": "2023-08-01"
+  "dateModified": "2023-08-02",
+  "datePublished": "2023-08-02"
 }
 
   </script><script>
