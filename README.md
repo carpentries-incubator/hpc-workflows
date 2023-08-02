@@ -9,7 +9,7 @@ with minimal human intervention. This is accomplished using
 If you are interested in learning more about workflow tools, please visit
 [The Workflows Community][workflows-community].
 
-> ### Snakemake is best for single-node jobs
+> ## Snakemake is best for single-node jobs
 >
 > NERSC's [Snakemake docs][nersc-snake] lists Snakemake's "cluster mode" as a
 > _disadvantage_, since it submits each "rule" as a separate job, thereby
@@ -26,12 +26,14 @@ If you are interested in learning more about workflow tools, please visit
 
 This is a translation of the [old HPC Workflows lesson][workflows] using
 [The Carpentries Workbench][workbench] and [R Markdown (Rmd)][rmd].
-
+You are cordially invited to contribute! Please check the list of
+[issues][issues] if you're unsure where to start.
 
 <!-- HPC Carpentry links -->
 
 [amdahl]: https://github.com/hpc-carpentry/amdahl
 [hpc-intro]: https://carpentries-incubator.github.io/hpc-intro/
+[issues]: https://github.com/carpentries-incubator/hpc-workflows/issues
 [workflows]: https://github.com/hpc-carpentry/hpc-workflows.old
 
 <!-- The Carpentries links -->
