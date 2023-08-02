@@ -4,20 +4,19 @@ teaching: 10
 exercises: 2
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+:::::::::::::::::::::::::::::: questions
 
 - What is a task graph?
 - How does the Snakemake file express a task graph?
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: objectives
+::::::::::::::::::::::::::::: objectives
 
 - Write a multiple-rule Snakefile with dependent rules
 - Translate between a task graph and rule set
 
-
-:::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
 
 ## Snakemake and Workflow
 
@@ -28,11 +27,11 @@ they can all run concurrently.
 A more interesting case is when there are dependencies between
 the rules, e.g. when one rule takes the output of another rule
 as its input. In this case, the dependent rule (the one that needs
-another rule's output) cannot run until the rule it depends on 
-has completed. 
+another rule's output) cannot run until the rule it depends on
+has completed.
 
-It's possible to express this relationship by means of 
-a task graph, whose nodes are tasks, and whose arcs are 
+It's possible to express this relationship by means of
+a task graph, whose nodes are tasks, and whose arcs are
 input-output relationships between the tasks.
 
 A Snakemake file is textual description of a task
@@ -46,16 +45,14 @@ Open your favorite editor, do the thing.
 
 Throw the switch!
 
-::::::::::::::::::::::::::::::::::::: challenge
+:::::::::::::::::::::::::::::: challenge
 
 Draw the task graph for your Snakefile.
 
 Given an example task graph, write a Snakefile that
 implements it.
 
-:::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: solution
+:::::::::::::::: solution
 
 The rules in the snakefile are nodes in the task
 graph. Two rules are connected by an arc in the task
@@ -67,12 +64,14 @@ that consumes the same file as input.
 A rule with an output that no other rules consumes is
 a terminal rule.
 
-::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::: keypoints 
+::::::::::::::::::::::::::::::::::::::::
 
-- Snakemake rule files can be mapped to task graphs 
+:::::::::::::::::::::::::::::: keypoints
+
+- Snakemake rule files can be mapped to task graphs
 - Tasks are executed as required in dependency order
 - Where possible, tasks may run concurrently.
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::
