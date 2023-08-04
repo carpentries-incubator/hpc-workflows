@@ -1,0 +1,4 @@
+rule:
+  input:
+  output: 'host.txt'
+  shell: 'hostname > host.txt'
