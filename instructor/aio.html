@@ -43,7 +43,7 @@
         
       </div>
     </div>
-    <div class="selector-container ">
+    <div class="selector-container">
       
       
       <div class="dropdown">
@@ -119,9 +119,11 @@
 </aside><div class="container">
       <div class="row">
         <!-- START: inst/pkgdown/templates/navbar.html -->
-  <div id="sidebar-col" class="col-lg-4">
-    <div id="sidebar" class="sidebar">
-      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle"><i class="search-icon" data-feather="x" role="img"></i></button>
+<div id="sidebar-col" class="col-lg-4">
+  <div id="sidebar" class="sidebar">
+      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle">
+          <i class="search-icon" data-feather="x" role="img"></i>
+        </button>
         <div class="sidebar-inner">
           <div class="row mobile-row">
             <div class="col">
@@ -278,6 +280,7 @@
             </div>
             <hr class="half-width resources">
 <a href="../instructor/aio.html">See all in one page</a>
+            
 
             <hr class="d-none d-sm-block d-md-none">
 <div class="d-grid gap-1">
@@ -423,7 +426,7 @@ the speed, or equivalently, that it would complete in 2/3 the time.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <pre class="shell"><code>[user@login1 ~]$ sbatch amdahl_1.sh  # serial job     ~ 25 sec
 [user@login1 ~]$ sbatch amdahl_2.sh  # 2-way parallel ~ 20 sec
@@ -527,7 +530,7 @@ does Snakemake do non-trivial work?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The rule does not get executed the second time. The Snakemake
 infrastructure is stateful, and knows that the required outputs are up
@@ -744,7 +747,7 @@ task?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Use the “mpi” option in the resource block of the Snakemake rule, and
 specify the number of tasks. This will be mapped to the <code>-n</code>
@@ -850,7 +853,7 @@ addition to the level of parallelism.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The profile files can have variables taken from the rule file, and in
 particular can refer to resources from a rule.</p>
@@ -950,7 +953,7 @@ would you generalize this to arbitrary parameters?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Arbitrary parameters are still finite, so you could just generate a
 flat list of all the combinations, and iterate over that. Or you could
@@ -1002,9 +1005,9 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.4" class="external-link">sandpaper (0.12.4)</a>,
-        <a href="https://github.com/carpentries/pegboard/tree/0.6.0" class="external-link">pegboard (0.6.0)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.18" class="external-link">varnish (0.2.18)</a>.</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.13.0" class="external-link">sandpaper (0.13.0)</a>,
+        <a href="https://github.com/carpentries/pegboard/tree/0.6.1" class="external-link">pegboard (0.6.1)</a>,
+      and <a href="https://github.com/carpentries/varnish/tree/0.3.0" class="external-link">varnish (0.3.0)</a>.</p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -1026,8 +1029,8 @@ any links that you are not going to use.
   "url": "https://carpentries-incubator.github.io/hpc-workflows/instructor/aio.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-workflows/instructor/aio.html",
   "dateCreated": "2023-04-19",
-  "dateModified": "2023-09-05",
-  "datePublished": "2023-09-05"
+  "dateModified": "2023-09-12",
+  "datePublished": "2023-09-12"
 }
 
   </script><script>
