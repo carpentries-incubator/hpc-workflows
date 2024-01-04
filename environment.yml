@@ -1,0 +1,24 @@
+# Conda environment for the HPC Carpentry Workflows lesson
+# 
+---
+name: workflows
+channels:
+  - conda-forge      # provides most software
+  - bioconda         # provides Snakemake
+dependencies:
+  - git              # version control system
+  - libxslt          # {sandpaper} build dependency
+  - matplotlib       # powerful Python plotting library
+  - mpi4py           # distributed-memory parallel library for Python
+  - numpy            # numerical algorithms for Python
+  - pandoc           # document converter
+  - perl             # pandoc/tinytex dependency
+  - pip              # Python package manager
+  - python=3         # Snakemake runs Python code natively
+  - r-base           # basic R installation
+  - r-essentials     # essential R packages
+  - radian           # more colorful R REPL
+  - snakemake        # workflow manager
+  - pip:             # list of PyPI packages (not in Conda)
+    - amdahl         # HPC Carpentry gray-box parallel program
+    - termplotlib    # ASCII art plots
