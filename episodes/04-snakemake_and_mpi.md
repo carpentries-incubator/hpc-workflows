@@ -328,7 +328,7 @@ options:
 ```
 The option we are looking for is `--terse`, and that will make `amdahl` print
 output in a format that is much easier to process, JSON. JSON format in a file
-typically uses the file extension so let's add that option to our shell command
+typically uses the file extension `.json` so let's add that option to our shell command
 and change the file format of the output:
 
 ```python
