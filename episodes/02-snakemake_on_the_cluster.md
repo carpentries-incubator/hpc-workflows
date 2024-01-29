@@ -40,7 +40,7 @@ time' of both the target and its dependencies. If any dependency has been
 updated since the target, then the actions are re-run to update the target.
 Using this approach, Snakemake knows to only rebuild the files that, either
 directly or indirectly, depend on the file that changed. This is called an
-_incremental build]_. 
+_incremental build_. 
 
 ::: callout
 ## Incremental Builds Improve Efficiency
@@ -191,7 +191,9 @@ default-resources:
 :::challenge
 We know that our problem runs in a very short time. Make the default length of
 our jobs to two minutes for Slurm.
+
 ::::::solution
+
 ```yaml
 printshellcmds: True
 jobs: 3
@@ -201,6 +203,7 @@ default-resources:
   - runtime=2
 ```
 ::::::
+
 :::
 
 There are various `sbatch` options not directly supported by the resource

@@ -25,7 +25,7 @@ environment module.
 
 Locate and load the `amdahl` module and then replace our `hostname_remote` rule
 with a version that runs `amdahl`. (Don't worry about parallel MPI just yet, run
-it with a single CPU, `mpirun -n 1 amdahl`).
+it with a single CPU, `mpiexec -n 1 amdahl`).
 
 Does your rule execute correctly? If not look through the log files to find out
 why?
@@ -43,16 +43,27 @@ rule amdahl_run:
     output: "amdahl_run.txt"
     input:
     shell:
-        "amdahl > amdahl_run.txt"
+        "mpiexec -n 1 amdahl > amdahl_run.txt"
 ```
 However, when we try to execute the rule we get an error (unless you already
-have a different version of `amdahl` already available in your path). Snakemake
+have a different version of `amdahl` available in your path). Snakemake
 reports the
 location of the logs and if we look inside we can (eventually) find
 ```output
 ...
-amdahl > amdahl_run.txt
-/cvmfs/software.eessi.io/versions/2023.06/compat/linux/x86_64/bin/bash: line 1: amdahl: command not found
+mpiexec -n 1 amdahl > amdahl_run.txt
+--------------------------------------------------------------------------
+mpiexec was unable to find the specified executable file, and therefore
+did not launch the job.  This error was first reported for process
+rank 0; it may have occurred for other processes as well.
+
+NOTE: A common cause for this error is misspelling a mpiexec command
+      line parameter option (remember that mpiexec interprets the first
+      unrecognized command line token as the executable).
+
+Node:       tmpnode1
+Executable: amdahl
+--------------------------------------------------------------------------
 ...
 ```
 So, even though we loaded the module before running the workflow, our
@@ -79,7 +90,7 @@ rule amdahl_run:
       "amdahl"
     input:
     shell:
-        "mpiexec -n 1 {executable} > {output}"
+        "mpiexec -n 1 amdahl > {output}"
 ```
 
 Adding these lines are not enough to make the rule execute however. Not only do
@@ -212,18 +223,22 @@ but there are two problems with this:
   SLURM job submission failed. The error message was sbatch: error: Invalid numeric value "{parallel_tasks}" for --ntasks.
   ```
 
-Unfortunately there is no direct way for us to access the wildcards in this
-scenario. The only way to do it is to _indirectly_ access the wildcards by
-using a function. The solution for this is to write a one-time use function that
-has no name. Such functions are called either anonymous functions or lamdba
-functions (both mean the same thing).
+Unfortunately for us, there is no direct way for us to access the wildcards. The
+reason for this is that Snakemake tries to use the value of `tasks` during it's
+initialisation stage, which is before we know the value of the wildcard. We need
+to defer the determination of `tasks` to later on. This can be achieved by
+specifying an input function instead of a value for this
+scenario. The solution then is to write a one-time use function that
+has no name to manipulate Snakmake. These kinds of functions are called either
+anonymous functions or lamdba functions (both mean the same thing), and are a
+feature of Python (and other programming languages).
 
 To define a lambda function in python, the general syntax is as follows:
 ```python
 lambda x: x + 54
 ```
-Since a function _can_ see the wildcards, we can use that to set the value for
-`tasks`:
+Since a function _can_ take the wildcards as arguments, we can use that to set
+the value for `tasks`:
 ```python
 rule amdahl_run:
     output: "amdahl_run_{parallel_tasks}.txt"
@@ -254,14 +269,118 @@ this is just as true with Snakefiles.
 
 :::
 
+Since our rule is now capable of generating an arbitrary number of output files
+things could get very crowded in our current directory. It's probably best then
+to put the runs into a separate folder. We can just add the folder directly to
+our `output`:
+
+```python
+rule amdahl_run:
+    output: "runs/amdahl_run_{parallel_tasks}.txt"
+    input:
+    envmodules:
+      "amdahl"
+    resources:
+      mpi="mpiexec",
+      # No direct way to access the wildcard in tasks, so we need to do this
+      # indirectly by declaring a short function that takes the wildcards as an
+      # argument
+      tasks=lambda wildcards: int(wildcards.parallel_tasks)
+    input:
+    shell:
+        "{resources.mpi} -n {resources.tasks} amdahl > {output}"
+```
+
 ::: challenge
 
-Create an output file for the case where we have 6 parallel tasks
+Create an output file (under the `run` folder) for the case where we have 6
+parallel tasks
 
 :::::: solution
 
 ```bash
-snakemake --profile cluster_profile amdahl_run_6.txt
+snakemake --profile cluster_profile runs/amdahl_run_6.txt
+```
+
+::::::
+
+:::
+
+Another thing about our application `amdahl` is that we ultimately want to
+process the output to generate our scaling plot. The output right now is useful
+for reading but makes processing harder. `amdahl` has an option that actually
+makes this easier for us. To see the `amdahl` options we can use
+```bash
+[ocaisa@node1 ~]$ module load amdahl
+[ocaisa@node1 ~]$ amdahl --help
+```
+```output
+usage: amdahl [-h] [-p [PARALLEL_PROPORTION]] [-w [WORK_SECONDS]] [-t] [-e]
+
+options:
+  -h, --help            show this help message and exit
+  -p [PARALLEL_PROPORTION], --parallel-proportion [PARALLEL_PROPORTION]
+                        Parallel proportion should be a float between 0 and 1
+  -w [WORK_SECONDS], --work-seconds [WORK_SECONDS]
+                        Total seconds of workload, should be an integer greater than 0
+  -t, --terse           Enable terse output
+  -e, --exact           Disable random jitter
+```
+The option we are looking for is `--terse`, and that will make `amdahl` print
+output in a format that is much easier to process, JSON. JSON format in a file
+typically uses the file extension so let's add that option to our shell command
+and change the file format of the output:
+
+```python
+rule amdahl_run:
+    output: "runs/amdahl_run_{parallel_tasks}.json"
+    input:
+    envmodules:
+      "amdahl"
+    resources:
+      mpi="mpiexec",
+      # No direct way to access the wildcard in tasks, so we need to do this
+      # indirectly by declaring a short function that takes the wildcards as an
+      # argument
+      tasks=lambda wildcards: int(wildcards.parallel_tasks)
+    input:
+    shell:
+        "{resources.mpi} -n {resources.tasks} amdahl --terse > {output}"
+```
+
+There was another parameter for `amdahl` that caught my eye. `amdahl` has an
+option `--parallel-proportion` (or `-p`)which we might be interested in
+changing. This has an impact on the values we get in our results so let's add
+another directory layer to our output format to reflect a particular choice for
+this value. We can use a wildcard so we done have to choose the value right
+away:
+
+```python
+rule amdahl_run:
+    output: "p_{parallel_proportion}/runs/amdahl_run_{parallel_tasks}.json"
+    input:
+    envmodules:
+      "amdahl"
+    resources:
+      mpi="mpiexec",
+      # No direct way to access the wildcard in tasks, so we need to do this
+      # indirectly by declaring a short function that takes the wildcards as an
+      # argument
+      tasks=lambda wildcards: int(wildcards.parallel_tasks)
+    input:
+    shell:
+        "{resources.mpi} -n {resources.tasks} amdahl --terse -p {wildcards.parallel_proportion} > {output}"
+```
+
+::: challenge
+
+Create an output file for a value of `-p` of 0.999 (the default value is 0.8)
+for the case where we have 6 parallel tasks.
+
+:::::: solution
+
+```bash
+snakemake --profile cluster_profile p_0.999/runs/amdahl_run_6.json
 ```
 
 ::::::
@@ -270,8 +389,7 @@ snakemake --profile cluster_profile amdahl_run_6.txt
 
 ## Snakemake order of operations
 
-We're only just getting started with some simple rules, but it's worth thinking about exactly what
-Snakemake is doing when you run it. There are three distinct phases:
+We're only just getting started with some simple rules, but it's worth thinking about exactly what Snakemake is doing when you run it. There are three distinct phases:
 
 1. Prepares to run:
     1. Reads in all the rule definitions from the Snakefile
