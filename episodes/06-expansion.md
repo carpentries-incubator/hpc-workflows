@@ -100,9 +100,9 @@ In our workflow the final step is to take all the generated files and combine
 them into a plot. To do that, you may have heard that some people use a python
 library called `matplotlib`. It's beyond the scope of this tutorial to write
 the python script to create a final plot, so we provide you with the script as
-part of this lesson (at <ADD LINK>). You can download it with
+part of this lesson. You can download it with
 ```bash
-curl -O <ADD LINK>
+curl -O https://ocaisa.github.io/hpc-workflows/files/plot_terse_amdahl_results.py
 ```
 
 The script `plot_terse_amdahl_results.py` needs a command line that looks like:
