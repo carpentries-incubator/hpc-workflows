@@ -405,7 +405,7 @@ We're only just getting started with some simple rules, but it's worth thinking 
     1. Checks that the command ran without errors *and* made the new output file as expected
     
 ::: callout
-## Dry-run (-n) mode
+## Dry-run (`-n`) mode
 
 It's often useful to run just the first two phases, so that Snakemake will plan out the jobs to
 run, and print them to the screen, but never actually run them. This is done with the `-n`
