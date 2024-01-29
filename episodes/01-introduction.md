@@ -150,7 +150,7 @@ What does the `-p` option in the `snakemake` command above do?
 
 *Hint: you can search in the text by pressing `/`, and quit back to the shell with `q`*
 
-:::::: Solution
+:::::: solution
 
 (2) Prints the shell commands that are being run to the terminal
 

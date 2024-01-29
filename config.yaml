@@ -63,7 +63,8 @@ episodes:
 - 02-snakemake_on_the_cluster.md
 - 03-placeholders.md
 - 04-snakemake_and_mpi.md
-
+- 05-chaining_rules.md
+- 06-expansion.md
 
 # Information for Learners
 learners:
