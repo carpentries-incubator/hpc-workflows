@@ -41,17 +41,20 @@ Global variables should be added before the rules in the Snakefile.
 NTASK_SIZES = [1, 2, 3, 4, 5]
 ```
 
-* Unlike with variables in shell scripts, we can put spaces around the `=` sign, but they are
+* Unlike with variables in shell scripts, we can put spaces around the `=` sign,
+  but they are not mandatory.
+* The lists of quoted strings are enclosed in square brackets and
+  comma-separated. If you know any Python you'll recognise this as Python list
+  syntax.
+* A good convention is to use capitalized names for these variables, but this is
   not mandatory.
-* The lists of quoted strings are enclosed in square brackets and comma-separated. If you know any
-  Python you'll recognise this as Python list syntax.
-* A good convention is to use capitalized names for these variables, but this is not mandatory.
-* Although these are referred to as variables, you can't actually change the values once the
-  workflow is running, so lists defined this way are more like constants.
+* Although these are referred to as variables, you can't actually change the
+  values once the workflow is running, so lists defined this way are more like
+  constants.
 
 ## Using a Snakemake rule to define a batch of outputs
 
-Now let's update our Snakefile to leverage the new global variable to create a
+Now let's update our Snakefile to leverage the new global variable and create a
 list of files:
 ```python
 rule generate_run_files:
@@ -76,23 +79,25 @@ to request a specific file:
 snakemake --profile cluster_profile/ p_0.999_runs.txt
 ```
 
-If you don't specify a target rule name or any file names on the command line when running
-Snakemake, the default is to use **the first rule** in the Snakefile as the target. 
+If you don't specify a target rule name or any file names on the command line
+when running Snakemake, the default is to use **the first rule** in the
+Snakefile as the target. 
 
 ::: callout
 ## Rules as targets
 
-Giving the name of a rule to Snakemake on the command line only works when that rule has
-*no wildcards* in the outputs, because Snakemake has no way to know what the desired wildcards
-might be. You will see the error "Target rules may not contain wildcards." This can also happen
-when you don't supply any explicit targets on the command line at all, and Snakemake tries to run
-the first rule defined in the Snakefile.
+Giving the name of a rule to Snakemake on the command line only works when that
+rule has *no wildcards* in the outputs, because Snakemake has no way to know
+what the desired wildcards might be. You will see the error "Target rules may
+not contain wildcards." This can also happen when you don't supply any explicit
+targets on the command line at all, and Snakemake tries to runthe first rule
+defined in the Snakefile. 
 
 :::
 
 ## Rules that combine multiple inputs
 
-Our *`generate_run_files`* rule is a rule which takes a list of input files. The
+Our `generate_run_files` rule is a rule which takes a list of input files. The
 length of that list is not fixed by the rule, but can change based on
 `NTASK_SIZES`. 
 
@@ -171,6 +176,14 @@ snakemake --profile cluster_profile/ p_0.8_scalability.jpg
 ```
 
 ::::::
+
+:::
+
+::: challenge
+## Bonus round
+
+Create a final rule that can be called directly and generates a scaling plot for
+3 different values of `p`.
 
 :::
 

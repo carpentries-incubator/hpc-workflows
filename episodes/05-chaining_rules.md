@@ -10,15 +10,13 @@ exercises: 30
 :::
 
 ::: objectives
-- "Use Snakemake to filter and then count the lines in a FASTQ file"
-- "Add an RNA quantification step in the data analysis"
-- "See how Snakemake deals with missing outputs"
+- ""
 :::
 
 ## A pipeline of multiple rules
 
-We now have a rule that can generate output for any value of `p` and any number
-tasks, we just need to call Snakemake with the parameters that we want:
+We now have a rule that can generate output for any value of `-p` and any number
+of tasks, we just need to call Snakemake with the parameters that we want:
 ```bash
 snakemake --profile cluster_profile p_0.999/runs/amdahl_run_6.json
 ```
@@ -57,7 +55,8 @@ localrules: hostname_login, generate_run_files
 
 :::
 
-Now let's run the new rule:
+Now let's run the new rule (remember we need to request the output file by name
+as the `output` in our rule contains a wildcard pattern):
 ```bash
 [ocaisa@node1 ~]$ snakemake --profile cluster_profile/ p_0.999_runs.txt
 ```
@@ -128,7 +127,8 @@ Look at the logging messages that Snakemake prints in the terminal. What has hap
 This, in a nutshell, is how we build workflows in Snakemake.
 
 1. Define rules for all the processing steps
-1. Choose `input` and `output` naming patterns that allow Snakemake to link the rules
+1. Choose `input` and `output` naming patterns that allow Snakemake to link the
+   rules
 1. Tell Snakemake to generate the final output file(s)
 
 If you are used to writing regular scripts this takes a little
@@ -157,34 +157,35 @@ you.
 
 Snakemake has a dedicated rule field for outputs that are
 [log files](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#log-files),
-and these are mostly treated as regular outputs except that log files are not removed if the job
-produces an error. This means you can look at the log to help diagnose the error. In a real
-workflow this can be very useful, but in terms of learning the fundementals of Snakemake we'll
-stick with regular `input` and `output` fields here.
+and these are mostly treated as regular outputs except that log files are not
+removed if the job produces an error. This means you can look at the log to help
+diagnose the error. In a real workflow this can be very useful, but in terms of
+learning the fundamentals of Snakemake we'll stick with regular `input` and
+`output` fields here.
 
 :::
-
-
 
 ::: callout
 
 ## Errors are normal
 
-Don't be disheartened if you see errors like the one above when first testing your new Snakemake
-pipelines. There is a lot that can go wrong when writing a new workflow, and you'll normally need
-several iterations to get things just right. One advantage of the Snakemake approach compared to
-regular scripts is that Snakemake fails fast when there is a problem, rather than ploughing on
-and potentially running junk calculations on partial or corrupted data. Another advantage is that
-when a step fails we can safely resume from where we left off, as we'll see in the next episode.
+Don't be disheartened if you see errors when first testing
+your new Snakemake pipelines. There is a lot that can go wrong when writing a
+new workflow, and you'll normally need several iterations to get things just
+right. One advantage of the Snakemake approach compared to regular scripts is
+that Snakemake fails fast when there is a problem, rather than ploughing on
+and potentially running junk calculations on partial or corrupted data. Another
+advantage is that when a step fails we can safely resume from where we left off.
 
 :::
 
 
 
 ::: keypoints
-- "Snakemake links rules by iteratively looking for rules that make missing inputs"
+- "Snakemake links rules by iteratively looking for rules that make missing
+  inputs"
 - "Rules may have multiple named inputs and/or outputs"
-- "If a shell command does not yield an expected output then Snakemake will regard that as a
-  failure"
+- "If a shell command does not yield an expected output then Snakemake will
+  regard that as a failure"
 :::
 

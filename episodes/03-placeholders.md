@@ -6,11 +6,9 @@ exercises: 30
 
 ::: questions
 - "How do I make a generic rule?"
-- "How does Snakemake decide what rule to run?"
 :::
 
 ::: objectives
-- "Understand the basic steps Snakemake goes through when running a workflow"
 - "See how Snakemake deals with some errors"
 :::
 
@@ -70,6 +68,9 @@ Placeholders are used in the `shell` section of a rule, and Snakemake will
 replace them with appropriate values - `{input}` with the full name of the input
 file, and
 `{output}` with the full name of the output file -- before running the command.
+
+`{resources}` is also a placeholder, and we can access a named element of the
+`{resources}` with the notation `{resources.runtime}` (for example).
 
 :::keypoints
 - "Snakemake rules are made more generic with placeholders"

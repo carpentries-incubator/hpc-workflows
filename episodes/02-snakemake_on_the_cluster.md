@@ -35,12 +35,11 @@ Nothing to be done (all requested files are present and up to date).
 ```
 
 Nothing happened! Why not? When it is asked to build a target, Snakemake checks
-the 'last modification
-time' of both the target and its dependencies. If any dependency has been
-updated since the target, then the actions are re-run to update the target.
-Using this approach, Snakemake knows to only rebuild the files that, either
-directly or indirectly, depend on the file that changed. This is called an
-_incremental build_. 
+the 'last modification time' of both the target and its dependencies. If any
+dependency has been updated since the target, then the actions are re-run to
+update the target. Using this approach, Snakemake knows to only rebuild the
+files that, either directly or indirectly, depend on the file that changed. This
+is called an _incremental build_. 
 
 ::: callout
 ## Incremental Builds Improve Efficiency
@@ -53,12 +52,11 @@ more efficient.
 ::: challenge
 ## Running on the cluster
 
-We need another rule now that executes the `hostname` on the cluster. Create the
-rule in your Snakefile and try to execute it on cluster with the options
-`--executor slurm` to `snakemake`
+We need another rule now that executes the `hostname` on the _cluster_. Create
+a new rule in your Snakefile and try to execute it on cluster with the option
+`--executor slurm` to `snakemake`.
 
 :::::: solution
-
 The rule is almost identical to the previous rule save for the rule name and 
 output file:
 
@@ -109,14 +107,13 @@ Complete log: .snakemake/log/2024-01-29T180346.788174.snakemake.log
 Note all the warnings that Snakemake is giving us about the fact that the rule
 may not be able to execute on our cluster as we may not have given enough
 information. Luckily for us, this actually works on our cluster and we can take
-a look in the output file we asked for, `hostname_remote.txt`:
+a look in the output file the new rule creates, `hostname_remote.txt`:
 ```bash
 [ocaisa@node1 ~]$ cat hostname_remote.txt
 ```
 ```output
 tmpnode1.int.jetstream2.hpc-carpentry.org
 ```
-
 ::::::
 
 :::
@@ -167,8 +164,10 @@ the help of a translation table:
 | `--cpus-per-task` | `cpus_per_task`   | number of cpus per task (in case of SMP, rather use `threads`) |
 | `--nodes`         | `nodes`           | number of nodes                                                |
 
-The warnings given by Snakemake hinted that we need to provide these options.
-One way to do it is to provide them is as part of the Snakemake rule, e.g.,
+The warnings given by Snakemake hinted that we may need to provide these
+options. One way to do it is to provide them is as part of the Snakemake rule
+using the keyword `resources`,
+e.g.,
 ```python
 rule:
     input: ...
@@ -178,8 +177,9 @@ rule:
         runtime: <some number>
 ```
 and we can also use the profile to define default values for these options to
-use with our project. For example, the available memory on our cluster is about
-4GB per core, so we can add that to our profile:
+use with our project, using the keyword `default-resources`. For example, the
+available memory on our cluster is about 4GB per core, so we can add that to our
+profile:
 ```yaml
 printshellcmds: True
 jobs: 3
@@ -189,7 +189,7 @@ default-resources:
 ```
 
 :::challenge
-We know that our problem runs in a very short time. Make the default length of
+We know that our problem runs in a very short time. Change the default length of
 our jobs to two minutes for Slurm.
 
 ::::::solution
@@ -227,10 +227,9 @@ Slurm executor (which is what we are doing via our new profile) this
 won't happen any more. So how do we force the rule to run on
 the login node?
 
-Well, it's no surprise that some Snakemake rules perform trivial tasks where job
-submission might be
-overkill (e.g., less than 1 minute worth of compute time). Similar to our case,
-it would be a better
+Well, in the case where a Snakemake rule performs a trivial task job submission
+might be overkill (e.g., less than 1 minute worth of compute time). Similar to
+our case, it would be a better
 idea to have these rules execute locally (i.e. where the `snakemake` command is
 run) instead of as a job. Snakemake lets you indicate which rules should always
 run locally with the `localrules` keyword. Let's define `hostname_login` as a

@@ -67,33 +67,37 @@ rule hostname_login:
 ## Key points about this file
 
 1. The file is named `Snakefile` - with a capital `S` and no file extension.
-1. Some lines are indented. Indents must be with space characters, not tabs. See the
-   setup section for how to make your text editor do this.
-1. The rule definition starts with the keyword `rule` followed by the rule name, then a colon.
-1. We named the rule `hostname`. You may use letters, numbers or underscores, but the rule name
-   must begin with a letter and may not be a keyword.
+1. Some lines are indented. Indents must be with space characters, not tabs. See
+   the setup section for how to make your text editor do this.
+1. The rule definition starts with the keyword `rule` followed by the rule name,
+   then a colon.
+1. We named the rule `hostname_login`. You may use letters, numbers or
+   underscores, but the rule name must begin with a letter and may not be a
+   keyword.
 1. The keywords `input`, `output`, `shell` are all followed by a colon.
 1. The file names and the shell command are all in `"quotes"`.
-1. The output filename is given before the input filename. In fact, Snakemake doesn't care what
-   order they appear in but we give the output first throughout this course. We'll see why soon.
-1. In this use case there is no input file for the command so we leave this blank.
+1. The output filename is given before the input filename. In fact, Snakemake
+   doesn't care what order they appear in but we give the output first
+   throughout this course. We'll see why soon.
+1. In this use case there is no input file for the command so we leave this
+   blank.
 
 :::
 
-Back in the shell we'll run our new rule. At this point, if there were any missing quotes, bad
-indents, etc. we may see an error.
+Back in the shell we'll run our new rule. At this point, if there were any
+missing quotes, bad indents, etc. we may see an error.
 
 ```bash
-$ snakemake -j1 -p hostname_login.txt
+$ snakemake -j1 -p hostname_login
 ```
 
 ::: callout
 
 ## `bash: snakemake: command not found...`
 
-If your shell tells you that it cannot find the command `snakemake` then we need to make the
-software available somehow. In our case, this means searching for the module that we need to
-load:
+If your shell tells you that it cannot find the command `snakemake` then we need
+to make the software available somehow. In our case, this means searching for
+the module that we need to load:
 ```bash
 module spider snakemake
 ```
@@ -148,17 +152,16 @@ What does the `-p` option in the `snakemake` command above do?
 1. Tells Snakemake to only run one process at a time
 1. Prompts the user for the correct input file
 
-*Hint: you can search in the text by pressing `/`, and quit back to the shell with `q`*
+*Hint: you can search in the text by pressing `/`, and quit back to the shell
+with `q`*
 
 :::::: solution
-
 (2) Prints the shell commands that are being run to the terminal
 
-This is such a useful thing we don't know why it isn't the default! The `-j1` option is what
-tells Snakemake to only run one process at a time, and we'll stick with this for now as it
-makes things simpler. The `-F` option tells Snakemake to always overwrite output files, and
-we'll learn about protected outputs much later in the course. Answer 4 is a total red-herring,
-as Snakemake never prompts interactively for user input.
+This is such a useful thing we don't know why it isn't the default! The `-j1`
+option is what tells Snakemake to only run one process at a time, and we'll
+stick with this for now as it makes things simpler. Answer 4 is a total
+red-herring, as Snakemake never prompts interactively for user input.
 ::::::
 :::
 
@@ -167,7 +170,7 @@ as Snakemake never prompts interactively for user input.
 - "Before running Snakemake you need to write a Snakefile"
 - "A Snakefile is a text file which defines a list of rules"
 - "Rules have inputs, outputs, and shell commands to be run"
-- "You tell Snakemake what file to make and it will run the shell command defined in the
-   appropriate rule"
+- "You tell Snakemake what file to make and it will run the shell command
+  defined in the appropriate rule"
 
 :::
