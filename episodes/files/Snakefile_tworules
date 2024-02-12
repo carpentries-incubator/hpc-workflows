@@ -1,9 +1,0 @@
-rule last:
-  input: 'lower.txt'
-  output: 'upper.txt'
-  shell: 'cat lower.txt | tr a-z A-Z > upper.txt'
-
-rule first:
-  input:
-  output: 'lower.txt'
-  shell: 'echo "Hello, world!" > lower.txt'
