@@ -1,0 +1,22 @@
+localrules: hostname_login
+
+rule hostname_login:
+    output: "hostname_login.txt"
+    input:
+    shell:
+        "hostname > hostname_login.txt"
+
+rule amdahl_run:
+    output: "p_{parallel_proportion}/runs/amdahl_run_{parallel_tasks}.json"
+    input:
+    envmodules:
+      "amdahl"
+    resources:
+      mpi="mpiexec",
+      # No direct way to access the wildcard in tasks, so we need to do this
+      # indirectly by declaring a short function that takes the wildcards as an
+      # argument
+      tasks=lambda wildcards: int(wildcards.parallel_tasks)
+    input:
+    shell:
+        "{resources.mpi} -n {resources.tasks} amdahl --terse -p {wildcards.parallel_proportion} > {output}"
