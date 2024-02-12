@@ -1,0 +1,8 @@
+rule one:
+  input:
+  output: 'amdahl_cluster.txt'
+  resources:
+    mpi="mpirun",
+    tasks=3
+  shell: 
+    "module load OpenMPI; mpirun -np {resources.tasks} amdahl > amdahl_cluster.txt"

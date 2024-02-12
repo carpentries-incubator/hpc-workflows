@@ -1,0 +1,13 @@
+#
+# Iterative example.
+#
+NAMES=['one','two','three']
+#
+rule done:
+  input: expand('{name}.out',name=NAMES)
+  output: 'done.out'
+  shell: 'echo "Done!" > done.out'
+rule iterate:
+  input: 
+  output: '{sample}.out' 
+  shell: 'echo {output} > {output}'
