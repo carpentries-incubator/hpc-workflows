@@ -1,5 +1,4 @@
 # Conda environment for the HPC Carpentry Workflows lesson
-# 
 ---
 name: workflows
 channels:
@@ -20,5 +19,5 @@ dependencies:
   - radian           # more colorful R REPL
   - snakemake        # workflow manager
   - pip:             # list of PyPI packages (not in Conda)
-    - amdahl         # HPC Carpentry gray-box parallel program
-    - termplotlib    # ASCII art plots
+      - amdahl       # HPC Carpentry gray-box parallel program
+      - termplotlib  # ASCII art plots
