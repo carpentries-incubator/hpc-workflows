@@ -39,7 +39,7 @@ the 'last modification time' of both the target and its dependencies. If any
 dependency has been updated since the target, then the actions are re-run to
 update the target. Using this approach, Snakemake knows to only rebuild the
 files that, either directly or indirectly, depend on the file that changed. This
-is called an _incremental build_. 
+is called an _incremental build_.
 
 ::: callout
 ## Incremental Builds Improve Efficiency
@@ -47,7 +47,6 @@ is called an _incremental build_.
 By only rebuilding files when required, Snakemake makes your processing
 more efficient.
 :::
-
 
 ::: challenge
 ## Running on the cluster
@@ -57,7 +56,7 @@ a new rule in your Snakefile and try to execute it on cluster with the option
 `--executor slurm` to `snakemake`.
 
 :::::: solution
-The rule is almost identical to the previous rule save for the rule name and 
+The rule is almost identical to the previous rule save for the rule name and
 output file:
 
 ```python
@@ -66,12 +65,14 @@ rule hostname_remote:
     input:
     shell:
         "hostname > hostname_remote.txt"
-
 ```
+
 You can then execute the rule with
+
 ```bash
 [ocaisa@node1 ~]$ snakemake -j1 -p --executor slurm hostname_remote
 ```
+
 ```output
 Building DAG of jobs...
 Retrieving input from storage.
@@ -96,24 +97,31 @@ rule hostname_remote:
 hostname > hostname_remote.txt
 No SLURM account given, trying to guess.
 Guessed SLURM account: def-users
-No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
-No job memory information ('mem_mb' or 'mem_mb_per_cpu') is given - submitting without. This might or might not work on your cluster.
+No wall time information given. This might or might not work on your cluster.
+If not, specify the resource runtime in your rule or as a reasonable default
+via --default-resources. No job memory information ('mem_mb' or 
+'mem_mb_per_cpu') is given - submitting without.
+This might or might not work on your cluster.
 Job 0 has been submitted with SLURM jobid 326 (log: /home/ocaisa/.snakemake/slurm_logs/rule_hostname_remote/326.log).
 [Mon Jan 29 18:04:26 2024]
 Finished job 0.
 1 of 1 steps (100%) done
 Complete log: .snakemake/log/2024-01-29T180346.788174.snakemake.log
 ```
+
 Note all the warnings that Snakemake is giving us about the fact that the rule
 may not be able to execute on our cluster as we may not have given enough
 information. Luckily for us, this actually works on our cluster and we can take
 a look in the output file the new rule creates, `hostname_remote.txt`:
+
 ```bash
 [ocaisa@node1 ~]$ cat hostname_remote.txt
 ```
+
 ```output
 tmpnode1.int.jetstream2.hpc-carpentry.org
 ```
+
 ::::::
 
 :::
@@ -123,9 +131,11 @@ tmpnode1.int.jetstream2.hpc-carpentry.org
 Adapting Snakemake to a particular environment can entail many flags and
 options. Therefore, it is possible to specify a configuration profile to be used
 to obtain default options. This looks like
+
 ```bash
 snakemake --profile myprofileFolder ...
 ```
+
 The profile folder must contain a file called `config.yaml` which is what will
 store our options. The folder may also contain other files necessary for the
 profile. Let's create the file `cluster_profile/config.yaml` and insert some of
@@ -141,8 +151,9 @@ We should now be able rerun our workflow by pointing to the profile rather than
 the listing out the options. To force our workflow to rerun, we first need to
 remove the output file `hostname_remote.txt`, and then we can try out our new
 profile
+
 ```bash
-[ocaisa@node1 ~]$ rm hostname_remote.txt 
+[ocaisa@node1 ~]$ rm hostname_remote.txt
 [ocaisa@node1 ~]$ snakemake --profile cluster_profile hostname_remote
 ```
 
@@ -168,6 +179,7 @@ The warnings given by Snakemake hinted that we may need to provide these
 options. One way to do it is to provide them is as part of the Snakemake rule
 using the keyword `resources`,
 e.g.,
+
 ```python
 rule:
     input: ...
@@ -176,10 +188,12 @@ rule:
         partition: <partition name>
         runtime: <some number>
 ```
+
 and we can also use the profile to define default values for these options to
 use with our project, using the keyword `default-resources`. For example, the
 available memory on our cluster is about 4GB per core, so we can add that to our
 profile:
+
 ```yaml
 printshellcmds: True
 jobs: 3
@@ -202,6 +216,7 @@ default-resources:
   - mem_mb_per_cpu=3600
   - runtime=2
 ```
+
 ::::::
 
 :::
@@ -222,7 +237,7 @@ rule myrule:
 
 Our initial rule was to
 get the hostname of the login node. We always want to run that rule on the login
-node for that to make sense. If we tell Snakemake to run all rules via the 
+node for that to make sense. If we tell Snakemake to run all rules via the
 Slurm executor (which is what we are doing via our new profile) this
 won't happen any more. So how do we force the rule to run on
 the login node?

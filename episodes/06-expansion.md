@@ -5,13 +5,17 @@ exercises: 30
 ---
 
 ::: questions
+
 - "How do I process multiple files at once?"
 - "How do I combine multiple files together?"
+
 :::
 
 ::: objectives
+
 - "Use Snakemake to process all our samples at once"
 - "Make a scalability plot that brings our results together"
+
 :::
 
 We created a rule that can generate a single output file, but we're not going to
@@ -41,14 +45,14 @@ Global variables should be added before the rules in the Snakefile.
 NTASK_SIZES = [1, 2, 3, 4, 5]
 ```
 
-* Unlike with variables in shell scripts, we can put spaces around the `=` sign,
+- Unlike with variables in shell scripts, we can put spaces around the `=` sign,
   but they are not mandatory.
-* The lists of quoted strings are enclosed in square brackets and
+- The lists of quoted strings are enclosed in square brackets and
   comma-separated. If you know any Python you'll recognise this as Python list
   syntax.
-* A good convention is to use capitalized names for these variables, but this is
+- A good convention is to use capitalized names for these variables, but this is
   not mandatory.
-* Although these are referred to as variables, you can't actually change the
+- Although these are referred to as variables, you can't actually change the
   values once the workflow is running, so lists defined this way are more like
   constants.
 
@@ -56,6 +60,7 @@ NTASK_SIZES = [1, 2, 3, 4, 5]
 
 Now let's update our Snakefile to leverage the new global variable and create a
 list of files:
+
 ```python
 rule generate_run_files:
     output: "p_{parallel_proportion}_runs.txt"
@@ -71,7 +76,7 @@ yield 5 files we want to make. Note that we had to protect our wildcard in a
 second set of parentheses so it wouldn't be interpreted as something that needed
 to be expanded.
 
-In our current case we still rely on the file name to define the value of the 
+In our current case we still rely on the file name to define the value of the
 wildcard `parallel_proportion` so we can't call the rule directly, we still need
 to request a specific file:
 
@@ -81,7 +86,7 @@ snakemake --profile cluster_profile/ p_0.999_runs.txt
 
 If you don't specify a target rule name or any file names on the command line
 when running Snakemake, the default is to use **the first rule** in the
-Snakefile as the target. 
+Snakefile as the target.
 
 ::: callout
 ## Rules as targets
@@ -91,7 +96,7 @@ rule has *no wildcards* in the outputs, because Snakemake has no way to know
 what the desired wildcards might be. You will see the error "Target rules may
 not contain wildcards." This can also happen when you don't supply any explicit
 targets on the command line at all, and Snakemake tries to runthe first rule
-defined in the Snakefile. 
+defined in the Snakefile.
 
 :::
 
@@ -99,23 +104,25 @@ defined in the Snakefile.
 
 Our `generate_run_files` rule is a rule which takes a list of input files. The
 length of that list is not fixed by the rule, but can change based on
-`NTASK_SIZES`. 
+`NTASK_SIZES`.
 
 In our workflow the final step is to take all the generated files and combine
 them into a plot. To do that, you may have heard that some people use a python
 library called `matplotlib`. It's beyond the scope of this tutorial to write
 the python script to create a final plot, so we provide you with the script as
 part of this lesson. You can download it with
+
 ```bash
 curl -O https://ocaisa.github.io/hpc-workflows/files/plot_terse_amdahl_results.py
 ```
 
 The script `plot_terse_amdahl_results.py` needs a command line that looks like:
+
 ```bash
 python plot_terse_amdahl_results.py <output jpeg filename> <1st input file> <2nd input file> ...
 ```
-Let's introduce that into our `generate_run_files` rule:
 
+Let's introduce that into our `generate_run_files` rule:
 
 ```python
 rule generate_run_files:
@@ -146,7 +153,8 @@ rule generate_run_files:
 
 :::
 
-Now we finally get to generate a scaling plot! Run the final Snakemake command
+Now we finally get to generate a scaling plot! Run the final Snakemake command:
+
 ```bash
 snakemake --profile cluster_profile/ p_0.999_scalability.jpg
 ```
@@ -184,11 +192,11 @@ snakemake --profile cluster_profile/ p_0.8_scalability.jpg
 
 Create a final rule that can be called directly and generates a scaling plot for
 3 different values of `p`.
-
 :::
 
 ::: keypoints
+
 - "Use the `expand()` function to generate lists of filenames you want to combine"
 - "Any `{input}` to a rule can be a variable-length list"
-:::
 
+:::

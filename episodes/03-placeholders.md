@@ -5,11 +5,15 @@ exercises: 30
 ---
 
 ::: questions
+
 - "How do I make a generic rule?"
+
 :::
 
 ::: objectives
+
 - "See how Snakemake deals with some errors"
+
 :::
 
 Our Snakefile has some duplication. For example, the names of text
@@ -61,7 +65,6 @@ The new rule has replaced explicit file names with things in `{curly brackets}`,
 specifically `{output}` (but it could also have been `{input}`...if that had
 a value and were useful).
 
-
 ### `{input}` and `{output}` are **placeholders**
 
 Placeholders are used in the `shell` section of a rule, and Snakemake will
@@ -73,7 +76,9 @@ file, and
 `{resources}` with the notation `{resources.runtime}` (for example).
 
 :::keypoints
+
 - "Snakemake rules are made more generic with placeholders"
-- "Placeholders in the shell part of the rule are replaced with values based on the chosen
-   wildcards"
+- "Placeholders in the shell part of the rule are replaced with values based on
+  the chosen wildcards"
+
 :::
