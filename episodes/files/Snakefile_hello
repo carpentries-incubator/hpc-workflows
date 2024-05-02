@@ -1,4 +1,0 @@
-rule:
-  input: 
-  output: 'hello.txt'
-  shell:  'echo "Hello there, world!" >> hello.txt'

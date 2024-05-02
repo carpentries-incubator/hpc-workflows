@@ -1,0 +1,13 @@
+localrules: hostname_login
+
+rule hostname_login:
+    output: "hostname_login.txt"
+    input:
+    shell:
+        "hostname > hostname_login.txt"
+
+rule hostname_remote:
+    output: "hostname_remote.txt"
+    input:
+    shell:
+        "hostname > hostname_remote.txt"
