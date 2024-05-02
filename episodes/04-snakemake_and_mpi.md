@@ -36,8 +36,10 @@ why?
 module spider amdahl
 module load amdahl
 ```
+
 will locate and then load the `amdahl` module. We can then update/replace our
 rule to run the `amdahl` application:
+
 ```python
 rule amdahl_run:
     output: "amdahl_run.txt"
@@ -45,10 +47,12 @@ rule amdahl_run:
     shell:
         "mpiexec -n 1 amdahl > {output}"
 ```
+
 However, when we try to execute the rule we get an error (unless you already
 have a different version of `amdahl` available in your path). Snakemake
 reports the
 location of the logs and if we look inside we can (eventually) find
+
 ```output
 ...
 mpiexec -n 1 amdahl > amdahl_run.txt
@@ -66,6 +70,7 @@ Executable: amdahl
 --------------------------------------------------------------------------
 ...
 ```
+
 So, even though we loaded the module before running the workflow, our
 Snakemake rule didn't find the executable. That's because the Snakemake rule
 is running in a clean _runtime environment_, and we need to somehow tell it to
@@ -81,6 +86,7 @@ environment module, so we need to
 tell Snakemake to load the module before it tries to execute the rule. Snakemake
 is aware of environment modules, and these can be specified via (yet another)
 option:
+
 ```python
 rule amdahl_run:
     output: "amdahl_run.txt"
@@ -99,6 +105,7 @@ use environment modules in general (since the use of environment modules is
 considered to make your runtime environment less reproducible as the available
 modules may differ from cluster to cluster). This requires you to give Snakemake
 an additonal option
+
 ```bash
 snakemake --profile cluster_profile --use-envmodules amdahl_run
 ```
@@ -111,6 +118,7 @@ a default option of our profile (by setting it's value to `True`)
 ::::::solution
 
 Update our cluster profile to
+
 ```yaml
 printshellcmds: True
 jobs: 3
@@ -120,6 +128,7 @@ default-resources:
   - runtime=2
 use-envmodules: True
 ```
+
 If you want to test it, you need to erase the output file of the rule and rerun
 Snakemake.
 
@@ -147,6 +156,7 @@ appear near the bottom:
 The one we are interested is `tasks` as we are only going to increase the number
 of ranks. We can define these in a `resources` section of our rule and refer to
 them using placeholders:
+
 ```python
 rule amdahl_run:
     output: "amdahl_run.txt"
@@ -168,9 +178,11 @@ the value that we want to use for `tasks`...and have Snakemake pick that up.
 
 We could use a _wildcard_ in the `output` to allow us to
 define the `tasks` we wish to use. The syntax for such a wildcard looks like
+
 ```python
 output: "amdahl_run_{parallel_tasks}.txt"
 ```
+
 where `parallel_tasks` is our wildcard.
 
 ::: callout
@@ -195,21 +207,25 @@ In the `shell` line you can reference the wildcard with
 
 ## Snakemake order of operations
 
-We're only just getting started with some simple rules, but it's worth thinking about exactly what Snakemake is doing when you run it. There are three distinct phases:
+We're only just getting started with some simple rules, but it's worth thinking
+about exactly what Snakemake is doing when you run it. There are three distinct
+phases:
 
 1. Prepares to run:
     1. Reads in all the rule definitions from the Snakefile
 1. Plans what to do:
     1. Sees what file(s) you are asking it to make
-    1. Looks for a matching rule by looking at the `output`s of all the rules it knows
+    1. Looks for a matching rule by looking at the `output`s of all the rules
+       it knows
     1. Fills in the wildcards to work out the `input` for this rule
     1. Checks that this input file (if required) is actually available
 1. Runs the steps:
     1. Creates the directory for the output file, if needed
     1. Removes the old output file if it is already there
     1. Only then, runs the shell command with the placeholders replaced
-    1. Checks that the command ran without errors *and* made the new output file as expected
-    
+    1. Checks that the command ran without errors *and* made the new output
+       file as expected
+
 ::: callout
 ## Dry-run (`-n`) mode
 
@@ -220,6 +236,7 @@ flag, eg:
 ```bash
 > $ snakemake -n ...
 ```
+
 :::
 
 The amount of checking may seem pedantic right now, but as the workflow gains more steps this will
@@ -230,6 +247,7 @@ become very useful to us indeed.
 We would like to use a wildcard in the `output` to allow us to
 define the number of `tasks` we wish to use. Based on what we've seen so far,
 you might imagine this could look like
+
 ```python
 rule amdahl_run:
     output: "amdahl_run_{parallel_tasks}.txt"
@@ -243,25 +261,31 @@ rule amdahl_run:
     shell:
         "{resources.mpi} -n {resources.tasks} amdahl > {output}"
 ```
+
 but there are two problems with this:
 
-* The only way for Snakemake to know the value of the wildcard is for the user
+- The only way for Snakemake to know the value of the wildcard is for the user
   to explicitly request a concrete output file (rather than call the rule):
-  ```bash
+
+```bash
   snakemake --profile cluster_profile amdahl_run_2.txt
   ```
+
   This is perfectly valid, as Snakemake can figure out that it has a rule that
   can match that filename.
-* The bigger problem is that even doing that does not work, it seems we cannot
+  
+- The bigger problem is that even doing that does not work, it seems we cannot
   use a wildcard for `tasks`:
+  
   ```output
   WorkflowError:
-  SLURM job submission failed. The error message was sbatch: error: Invalid numeric value "{parallel_tasks}" for --ntasks.
+  SLURM job submission failed. The error message was sbatch:
+  error: Invalid numeric value "{parallel_tasks}" for --ntasks.
   ```
 
 Unfortunately for us, there is no direct way for us to access the wildcards
-for `tasks`. The
-reason for this is that Snakemake tries to use the value of `tasks` during it's
+for `tasks`.
+The reason for this is that Snakemake tries to use the value of `tasks` during its
 initialisation stage, which is before we know the value of the wildcard. We need
 to defer the determination of `tasks` to later on. This can be achieved by
 specifying an input function instead of a value for this
@@ -272,11 +296,14 @@ are called either anonymous functions or lamdba functions (both mean the same
 thing), and are a feature of Python (and other programming languages).
 
 To define a lambda function in python, the general syntax is as follows:
+
 ```python
 lambda x: x + 54
 ```
+
 Since our function _can_ take the wildcards as arguments, we can use that to set
 the value for `tasks`:
+
 ```python
 rule amdahl_run:
     output: "amdahl_run_{parallel_tasks}.txt"
@@ -301,9 +328,9 @@ arbitrary number of parallel tasks.
 
 ## Comments in Snakefiles
 
-In the above code, the line beginning `#` is a comment line. Hopefully you are already in the
-habit of adding comments to your own scripts. Good comments make any script more readable, and
-this is just as true with Snakefiles.
+In the above code, the line beginning `#` is a comment line. Hopefully you are
+already in the habit of adding comments to your own scripts. Good comments make
+any script more readable, and this is just as true with Snakefiles.
 
 :::
 
@@ -352,10 +379,12 @@ Another thing about our application `amdahl` is that we ultimately want to
 process the output to generate our scaling plot. The output right now is useful
 for reading but makes processing harder. `amdahl` has an option that actually
 makes this easier for us. To see the `amdahl` options we can use
+
 ```bash
 [ocaisa@node1 ~]$ module load amdahl
 [ocaisa@node1 ~]$ amdahl --help
 ```
+
 ```output
 usage: amdahl [-h] [-p [PARALLEL_PROPORTION]] [-w [WORK_SECONDS]] [-t] [-e]
 
@@ -368,6 +397,7 @@ options:
   -t, --terse           Enable terse output
   -e, --exact           Disable random jitter
 ```
+
 The option we are looking for is `--terse`, and that will make `amdahl` print
 output in a format that is much easier to process, JSON. JSON format in a file
 typically uses the file extension `.json` so let's add that option to our 
@@ -430,7 +460,6 @@ snakemake --profile cluster_profile p_0.999/runs/amdahl_run_6.json
 ::::::
 
 :::
-
 
 ::: keypoints
 

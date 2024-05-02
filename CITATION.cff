@@ -1,8 +1,8 @@
 # This CITATION.cff file was generated with cffinit.
 # Visit https://bit.ly/cffinit to generate yours today!
-
+---
 cff-version: 1.2.0
-title: HPC Workflow Management with Snakemake
+title: "HPC Workflow Management with Snakemake"
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -10,47 +10,80 @@ type: software
 authors:
   - given-names: Alan
     family-names: O'Cais
-    email: alan.ocais@cecam.org
-    affiliation: University of Barcelona
-    orcid: 'https://orcid.org/0000-0002-8254-8752'
-repository-code: 'https://github.com/carpentries-incubator/hpc-workflows'
-url: 'https://carpentries-incubator.github.io/hpc-workflows/'
+    email: "alan.ocais@cecam.org"
+    affiliation: "University of Barcelona"
+    orcid: "https://orcid.org/0000-0002-8254-8752"
+    alias: ocaisa
+  - given-names: Andrew
+    family-names: Reid
+    email: "andrew.reid@nist.gov"
+    affiliation: "National Institute of Standards and Technology"
+    orcid: "https://orcid.org/0000-0002-1564-5640"
+    alias: reid-a
+  - given-names: Annajiat
+    family-names: Alim Rasel
+    email: "annajiat@bracu.ac.bd"
+    affiliation: "Brac University"
+    orcid: "https://orcid.org/0000-0003-0198-3734"
+    alias: annajiat
+  - given-names: Benson
+    family-names: Muite
+    email: "benson_muite@emailplus.org"
+    affiliation: "Kichakato Kizito"
+    alias: bkmgit
+  - given-names: Trevor
+    family-names: Keller
+    email: "trevor.keller@nist.gov"
+    affiliation: "National Institute of Standards and Technology"
+    orcid: "https://orcid.org/0000-0002-2920-8302"
+    alias: tkphd
+  - given-names: Wirawan
+    family-names: Purwanto
+    email: "wpurwant@odu.edu"
+    affiliation: "Old Dominion University"
+    orcid: "https://orcid.org/0000-0002-2124-4552"
+    alias: wirawan0
+
+repository-code: "https://github.com/carpentries-incubator/hpc-workflows"
+url: "https://carpentries-incubator.github.io/hpc-workflows/"
 abstract: >-
   When using HPC resources, it's very common to need to
   carry out the same set of tasks over a set of data
   (commonly called a workflow or pipeline). In this lesson
   we will make an experiment that takes an application which
-  runs in parallel and investigate it’s scalability. To do
+  runs in parallel and investigate its scalability. To do
   that we will need to gather data, in this case that means
   running the application multiple times with different
   numbers of CPU cores and recording the execution time.
-  Once we’ve done that we need to create a visualisation of
+  Once we've done that we need to create a visualisation of
   the data to see how it compares against the ideal case.
-
 
   We could do all of this manually, but there are useful
   tools to help us manage data analysis pipelines like we
   have in our experiment. In the context of this lesson,
-  we’ll learn about one of those: Snakemake.
+  we'll learn about one of those: Snakemake.
 keywords:
   - HPC
   - Carpentries
   - Lesson
   - Workflow
   - Pipeline
-license: CC-BY-4.0
+license: "CC-BY-4.0"
 references:
-  - authors:
+  - title: "Getting Started with Snakemake"
+    authors:
       - family-names: Collins
         given-names: Daniel
-    title: "Getting Started with Snakemake"
+        alias: DC23
     type: software
-    repository-code: 'https://github.com/carpentries-incubator/workflows-snakemake/'
-    url: 'https://carpentries-incubator.github.io/workflows-snakemake/'
-  - authors:
+    repository-code: "https://github.com/carpentries-incubator/workflows-snakemake"
+    url: "https://carpentries-incubator.github.io/workflows-snakemake/"
+  - title: "Snakemake for Bioinformatics"
+    authors:
       - family-names: Booth
         given-names: Tim
-    title: "Snakemake for Bioinformatics"
+        alias: tbooth
+        orcid: "https://orcid.org/0000-0003-2470-9519"
     type: software
-    repository-code: 'https://github.com/carpentries-incubator/snakemake-novice-bioinformatics/'
-    url: 'https://carpentries-incubator.github.io/snakemake-novice-bioinformatics'
+    repository-code: "https://github.com/carpentries-incubator/snakemake-novice-bioinformatics/"
+    url: "https://carpentries-incubator.github.io/snakemake-novice-bioinformatics"

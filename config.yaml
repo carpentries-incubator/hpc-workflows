@@ -1,6 +1,6 @@
-#------------------------------------------------------------
-# Values for this lesson.
-#------------------------------------------------------------
+# HPC Workflow Management with Snakemake:
+# Lesson templating & build parameters
+---
 
 # Which carpentry is this (swc, dc, lc, or cp)?
 # swc: Software Carpentry
@@ -11,7 +11,7 @@
 carpentry: 'incubator'
 
 # Overall title for pages.
-title: 'HPC Workflow Management with Snakemake' # FIXME
+title: 'HPC Workflow Management with Snakemake'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: 2023-04-19
@@ -24,7 +24,7 @@ keywords: 'HPC Carpentry, snakemake, workflows, hpc'
 life_cycle: 'pre-alpha'
 
 # License of the lesson
-license: 'CC-BY 4.0'
+license: 'CC-BY-4.0'  # SPDX identifier
 
 # Link to the source repository for this lesson
 source: 'https://github.com/carpentries-incubator/hpc-workflows'
@@ -59,12 +59,12 @@ contact: 'maintainers-hpc@lists.carpentries.org'
 
 # Order of episodes in your lesson
 episodes:
-- 01-introduction.md
-- 02-snakemake_on_the_cluster.md
-- 03-placeholders.md
-- 04-snakemake_and_mpi.md
-- 05-chaining_rules.md
-- 06-expansion.md
+  - 01-introduction.md
+  - 02-snakemake_on_the_cluster.md
+  - 03-placeholders.md
+  - 04-snakemake_and_mpi.md
+  - 05-chaining_rules.md
+  - 06-expansion.md
 
 # Information for Learners
 learners:
@@ -79,5 +79,3 @@ profiles:
 #
 # This space below is where custom yaml items (e.g. pinning
 # sandpaper and varnish versions) should live
-
-
