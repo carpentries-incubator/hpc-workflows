@@ -58,22 +58,22 @@ contact: 'maintainers-hpc@lists.carpentries.org'
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes: 
-- amdahl_foundation.md
-- snakemake_single.md
-- snakemake_multiple.md
-- snakemake_cluster.md
-- snakemake_profiles.md
-- amdahl_snakemake.md
+episodes:
+- 01-introduction.md
+- 02-snakemake_on_the_cluster.md
+- 03-placeholders.md
+- 04-snakemake_and_mpi.md
+- 05-chaining_rules.md
+- 06-expansion.md
 
 # Information for Learners
-learners: 
+learners:
 
 # Information for Instructors
-instructors: 
+instructors:
 
 # Learner Profiles
-profiles: 
+profiles:
 
 # Customisation ---------------------------------------------
 #
