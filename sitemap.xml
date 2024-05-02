@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/02-snakemake_on_the_cluster.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/03-placeholders.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/04-snakemake_and_mpi.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/05-chaining_rules.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/06-expansion.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/hpc-workflows/404.html</loc>
   </url>
   <url>
@@ -23,6 +41,24 @@
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/hpc-workflows/index.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/02-snakemake_on_the_cluster.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/03-placeholders.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/04-snakemake_and_mpi.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/05-chaining_rules.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/06-expansion.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/404.html</loc>

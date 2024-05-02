@@ -185,7 +185,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="amdahl_foundation.html">1. Running a Parallel Application on the Cluster</a>
+        <a href="01-introduction.html">1. Running commands with Snakemake</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -197,7 +197,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="snakemake_single.html">2. Introduction to Snakemake</a>
+        <a href="02-snakemake_on_the_cluster.html">2. Running Snakemake on the cluster</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -209,7 +209,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="snakemake_multiple.html">3. More Complicated Snakefiles</a>
+        <a href="03-placeholders.html">3. Placeholders</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -221,7 +221,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="snakemake_cluster.html">4. Snakemake and the Cluster</a>
+        <a href="04-snakemake_and_mpi.html">4. MPI applications and Snakemake</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -233,7 +233,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="snakemake_profiles.html">5. Snakemake Profiles</a>
+        <a href="05-chaining_rules.html">5. Chaining rules</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -245,7 +245,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="amdahl_snakemake.html">6. Amdahl Parallel Runs</a>
+        <a href="06-expansion.html">6. Processing lists of inputs</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -308,36 +308,51 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="amdahl_foundation"><h2 class="section-heading"><a href="amdahl_foundation.html">Running a Parallel Application on the Cluster</a></h2>
+<section id="01-introduction"><h2 class="section-heading"><a href="01-introduction.html">Running commands with Snakemake</a></h2>
 <hr class="half-width">
 <ul>
-<li>The amdahl code is a model of a parallel application</li>
-<li>The execution speed depends on the degree of parallelism</li>
-</ul></section><section id="snakemake_single"><h2 class="section-heading"><a href="snakemake_single.html">Introduction to Snakemake</a></h2>
+<li>“Before running Snakemake you need to write a Snakefile”</li>
+<li>“A Snakefile is a text file which defines a list of rules”</li>
+<li>“Rules have inputs, outputs, and shell commands to be run”</li>
+<li>“You tell Snakemake what file to make and it will run the shell
+command defined in the appropriate rule”</li>
+</ul></section><section id="02-snakemake_on_the_cluster"><h2 class="section-heading"><a href="02-snakemake_on_the_cluster.html">Running Snakemake on the cluster</a></h2>
 <hr class="half-width">
 <ul>
-<li>Snakemake is an indirect way of running executables</li>
-<li>Snakemake has a notion of system state, and can be fooled.</li>
-</ul></section><section id="snakemake_multiple"><h2 class="section-heading"><a href="snakemake_multiple.html">More Complicated Snakefiles</a></h2>
+<li>“Snakemake generates and submits its own batch scripts for your
+scheduler.”</li>
+<li>“You can store default configuration settings in a Snakemake
+profile”</li>
+<li>“<code>localrules</code> defines rules that are executed locally,
+and never submitted to a cluster.”</li>
+</ul></section><section id="03-placeholders"><h2 class="section-heading"><a href="03-placeholders.html">Placeholders</a></h2>
 <hr class="half-width">
 <ul>
-<li>Snakemake rule files can be mapped to task graphs</li>
-<li>Tasks are executed as required in dependency order</li>
-<li>Where possible, tasks may run concurrently.</li>
-</ul></section><section id="snakemake_cluster"><h2 class="section-heading"><a href="snakemake_cluster.html">Snakemake and the Cluster</a></h2>
+<li>“Snakemake rules are made more generic with placeholders”</li>
+<li>“Placeholders in the shell part of the rule are replaced with values
+based on the chosen wildcards”</li>
+</ul></section><section id="04-snakemake_and_mpi"><h2 class="section-heading"><a href="04-snakemake_and_mpi.html">MPI applications and Snakemake</a></h2>
 <hr class="half-width">
 <ul>
-<li>Snakemake rule files can submit cluster jobs.</li>
-<li>There are a lot of options.</li>
-</ul></section><section id="snakemake_profiles"><h2 class="section-heading"><a href="snakemake_profiles.html">Snakemake Profiles</a></h2>
+<li>“Snakemake chooses the appropriate rule by replacing wildcards such
+that the output matches the target”</li>
+<li>“Snakemake checks for various error conditions and will stop if it
+sees a problem”</li>
+</ul></section><section id="05-chaining_rules"><h2 class="section-heading"><a href="05-chaining_rules.html">Chaining rules</a></h2>
 <hr class="half-width">
 <ul>
-<li>Snakemake profiles encapsulate cluster complexity.</li>
-<li>Retaining operational flexibliity is also important.</li>
-</ul></section><section id="amdahl_snakemake"><h2 class="section-heading"><a href="amdahl_snakemake.html">Amdahl Parallel Runs</a></h2>
+<li>“Snakemake links rules by iteratively looking for rules that make
+missing inputs”</li>
+<li>“Rules may have multiple named inputs and/or outputs”</li>
+<li>“If a shell command does not yield an expected output then Snakemake
+will regard that as a failure”</li>
+</ul></section><section id="06-expansion"><h2 class="section-heading"><a href="06-expansion.html">Processing lists of inputs</a></h2>
 <hr class="half-width">
 <ul>
-<li>A relatively compact snakemake file collects interesting data.</li>
+<li>“Use the <code>expand()</code> function to generate lists of
+filenames you want to combine”</li>
+<li>“Any <code>{input}</code> to a rule can be a variable-length
+list”</li>
 </ul></section>
 </div>
     </main>
@@ -356,7 +371,7 @@
 	
         | <a href="https://github.com/carpentries-incubator/hpc-workflows/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://github.com/carpentries-incubator/hpc-workflows/" class="external-link">Source</a></p>
-				<p><a href="https://github.com/carpentries-incubator/hpc-workflows/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:maintainers-hpc@lists.carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+				<p><a href="https://github.com/carpentries-incubator/hpc-workflows/blob/main/CITATION.cff" class="external-link">Cite</a> | <a href="mailto:maintainers-hpc@lists.carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
         
@@ -386,8 +401,8 @@
   "url": "https://carpentries-incubator.github.io/hpc-workflows/key-points.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-workflows/key-points.html",
   "dateCreated": "2023-04-19",
-  "dateModified": "2024-04-30",
-  "datePublished": "2024-04-30"
+  "dateModified": "2024-05-02",
+  "datePublished": "2024-05-02"
 }
 
   </script><script>
