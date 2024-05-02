@@ -5,13 +5,16 @@ exercises: 30
 ---
 
 ::: questions
+
 - "How do I run a simple command with Snakemake?"
+
 :::
 
 :::objectives
-- "Create a Snakemake recipe (a Snakefile)"
-:::
 
+- "Create a Snakemake recipe (a Snakefile)"
+
+:::
 
 ## What is the workflow I'm interested in?
 
@@ -37,6 +40,7 @@ which prints out the name of the host where the command is executed:
 ```bash
 [ocaisa@node1 ~]$ hostname
 ```
+
 ```output
 node1.int.jetstream2.hpc-carpentry.org
 ```
@@ -74,7 +78,7 @@ rule hostname_login:
 1. We named the rule `hostname_login`. You may use letters, numbers or
    underscores, but the rule name must begin with a letter and may not be a
    keyword.
-1. The keywords `input`, `output`, `shell` are all followed by a colon.
+1. The keywords `input`, `output`, and `shell` are all followed by a colon (":").
 1. The file names and the shell command are all in `"quotes"`.
 1. The output filename is given before the input filename. In fact, Snakemake
    doesn't care what order they appear in but we give the output first
@@ -85,10 +89,10 @@ rule hostname_login:
 :::
 
 Back in the shell we'll run our new rule. At this point, if there were any
-missing quotes, bad indents, etc. we may see an error.
+missing quotes, bad indents, etc., we may see an error.
 
 ```bash
-$ snakemake -j1 -p hostname_login
+snakemake -j1 -p hostname_login
 ```
 
 ::: callout
@@ -98,6 +102,7 @@ $ snakemake -j1 -p hostname_login
 If your shell tells you that it cannot find the command `snakemake` then we need
 to make the software available somehow. In our case, this means searching for
 the module that we need to load:
+
 ```bash
 module spider snakemake
 ```
@@ -122,7 +127,6 @@ Names marked by a trailing (E) are extensions provided by another module.
 
      $ module spider snakemake/8.2.1
 --------------------------------------------------------------------------------------------------------
-
 ```
 
 Now we want the module, so let's load that to make the package available
@@ -136,8 +140,13 @@ and then make sure we have the `snakemake` command available
 ```bash
 [ocaisa@node1 ~]$ which snakemake
 ```
+
 ```output
 /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/amd/zen3/software/snakemake/8.2.1-foss-2023a/bin/snakemake
+```
+
+```bash
+snakemake -j1 -p hostname_login
 ```
 :::
 
@@ -152,8 +161,10 @@ What does the `-p` option in the `snakemake` command above do?
 1. Tells Snakemake to only run one process at a time
 1. Prompts the user for the correct input file
 
-*Hint: you can search in the text by pressing `/`, and quit back to the shell
-with `q`*
+:::::: hint
+You can search in the text by pressing <kbd>/</kbd>,
+and quit back to the shell with <kbd>q</kbd>.
+::::::
 
 :::::: solution
 (2) Prints the shell commands that are being run to the terminal

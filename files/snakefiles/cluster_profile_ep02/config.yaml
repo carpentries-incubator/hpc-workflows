@@ -1,4 +1,5 @@
-printshellcmds: True
+---
+printshellcmds: true
 jobs: 3
 executor: slurm
 default-resources:

@@ -5,18 +5,23 @@ exercises: 30
 ---
 
 ::: questions
+
 - "How do I combine rules into a workflow?"
 - "How do I make a rule with multiple inputs and outputs?"
+
 :::
 
 ::: objectives
+
 - ""
+
 :::
 
 ## A pipeline of multiple rules
 
 We now have a rule that can generate output for any value of `-p` and any number
 of tasks, we just need to call Snakemake with the parameters that we want:
+
 ```bash
 snakemake --profile cluster_profile p_0.999/runs/amdahl_run_6.json
 ```
@@ -47,6 +52,7 @@ only?
 :::::: solution
 
 We need to add the new rule to our `localrules`:
+
 ```python
 localrules: hostname_login, generate_run_files
 ```
@@ -57,9 +63,11 @@ localrules: hostname_login, generate_run_files
 
 Now let's run the new rule (remember we need to request the output file by name
 as the `output` in our rule contains a wildcard pattern):
+
 ```bash
 [ocaisa@node1 ~]$ snakemake --profile cluster_profile/ p_0.999_runs.txt
 ```
+
 ```output
 Using profile cluster_profile/ for setting default command line arguments.
 Building DAG of jobs...
@@ -82,7 +90,8 @@ rule amdahl_run:
     jobid: 1
     reason: Missing output files: p_0.999/runs/amdahl_run_6.json
     wildcards: parallel_proportion=0.999, parallel_tasks=6
-    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, mem_mb_per_cpu=3600, runtime=2, mpi=mpiexec, tasks=6
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954,
+               tmpdir=<TBD>, mem_mb_per_cpu=3600, runtime=2, mpi=mpiexec, tasks=6
 
 mpiexec -n 6 amdahl --terse -p 0.999 > p_0.999/runs/amdahl_run_6.json
 No SLURM account given, trying to guess.
@@ -99,9 +108,11 @@ localrule generate_run_files:
     input: p_0.999/runs/amdahl_run_6.json
     output: p_0.999_runs.txt
     jobid: 0
-    reason: Missing output files: p_0.999_runs.txt; Input files updated by another job: p_0.999/runs/amdahl_run_6.json
+    reason: Missing output files: p_0.999_runs.txt;
+            Input files updated by another job: p_0.999/runs/amdahl_run_6.json
     wildcards: parallel_proportion=0.999
-    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=/tmp, mem_mb_per_cpu=3600, runtime=2
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954,
+               tmpdir=/tmp, mem_mb_per_cpu=3600, runtime=2
 
 echo p_0.999/runs/amdahl_run_6.json done > p_0.999_runs.txt
 [Tue Jan 30 17:47:31 2024]
@@ -110,17 +121,16 @@ Finished job 0.
 Complete log: .snakemake/log/2024-01-30T173929.781106.snakemake.log
 ```
 
-Look at the logging messages that Snakemake prints in the terminal. What has happened here?
+Look at the logging messages that Snakemake prints in the terminal.
+What has happened here?
 
 1. Snakemake looks for a rule to make `p_0.999_runs.txt`
 1. It determines that "generate_run_files" can make this if
    `parallel_proportion=0.999`
 1. It sees that the input needed is therefore `p_0.999/runs/amdahl_run_6.json`
-<br/><br/>
 1. Snakemake looks for a rule to make `p_0.999/runs/amdahl_run_6.json`
 1. It determines that "amdahl_run" can make this if `parallel_proportion=0.999`
    and `parallel_tasks=6`
-<br/><br/>
 1. Now Snakemake has reached an available input file (in this case, no input
    file is actually required), it runs both steps to get the final output
 
@@ -182,10 +192,11 @@ advantage is that when a step fails we can safely resume from where we left off.
 
 
 ::: keypoints
+
 - "Snakemake links rules by iteratively looking for rules that make missing
   inputs"
 - "Rules may have multiple named inputs and/or outputs"
 - "If a shell command does not yield an expected output then Snakemake will
   regard that as a failure"
-:::
 
+:::
