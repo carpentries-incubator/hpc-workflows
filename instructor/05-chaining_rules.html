@@ -398,7 +398,8 @@ rule amdahl_run:
     jobid: 1
     reason: Missing output files: p_0.999/runs/amdahl_run_6.json
     wildcards: parallel_proportion=0.999, parallel_tasks=6
-    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=&lt;TBD&gt;, mem_mb_per_cpu=3600, runtime=2, mpi=mpiexec, tasks=6
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954,
+               tmpdir=&lt;TBD&gt;, mem_mb_per_cpu=3600, runtime=2, mpi=mpiexec, tasks=6
 
 mpiexec -n 6 amdahl --terse -p 0.999 &gt; p_0.999/runs/amdahl_run_6.json
 No SLURM account given, trying to guess.
@@ -415,9 +416,11 @@ localrule generate_run_files:
     input: p_0.999/runs/amdahl_run_6.json
     output: p_0.999_runs.txt
     jobid: 0
-    reason: Missing output files: p_0.999_runs.txt; Input files updated by another job: p_0.999/runs/amdahl_run_6.json
+    reason: Missing output files: p_0.999_runs.txt;
+            Input files updated by another job: p_0.999/runs/amdahl_run_6.json
     wildcards: parallel_proportion=0.999
-    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954, tmpdir=/tmp, mem_mb_per_cpu=3600, runtime=2
+    resources: mem_mb=1000, mem_mib=954, disk_mb=1000, disk_mib=954,
+               tmpdir=/tmp, mem_mb_per_cpu=3600, runtime=2
 
 echo p_0.999/runs/amdahl_run_6.json done &gt; p_0.999_runs.txt
 [Tue Jan 30 17:47:31 2024]
@@ -434,13 +437,15 @@ What has happened here?</p>
 <code>parallel_proportion=0.999</code>
 </li>
 <li>It sees that the input needed is therefore
-<code>p_0.999/runs/amdahl_run_6.json</code> <br><br></li>
+<code>p_0.999/runs/amdahl_run_6.json</code>
+</li>
 <li>Snakemake looks for a rule to make
 <code>p_0.999/runs/amdahl_run_6.json</code>
 </li>
 <li>It determines that “amdahl_run” can make this if
-<code>parallel_proportion=0.999</code> and <code>parallel_tasks=6</code>
-<br><br></li>
+<code>parallel_proportion=0.999</code> and
+<code>parallel_tasks=6</code>
+</li>
 <li>Now Snakemake has reached an available input file (in this case, no
 input file is actually required), it runs both steps to get the final
 output</li>
