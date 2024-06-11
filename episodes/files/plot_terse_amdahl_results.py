@@ -1,13 +1,22 @@
-import sys
+#!/usr/bin/env python3
+import argparse
 import json
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-def process_files(file_list, output="plot.jpg"):
+matplotlib.use('AGG')
+
+description = """
+Plot results of an Amdahl scaling study,
+assuming the '--terse' output flag was used.
+"""
+
+def process_files(output, file_list):
     value_tuples=[]
     for filename in file_list:
       # Open the JSON file and load data
-      with open(filename, 'r') as file:
+      with open(str(filename), 'r') as file:
         data = json.load(file)
       value_tuples.append((data['nproc'], data['execution_time']))
 
@@ -22,9 +31,10 @@ def process_files(file_list, output="plot.jpg"):
 
     # Adding the y=1/x line
     x_line = np.linspace(1, max(x), 100)  # Create x values for the line
-    y_line = (y[0]/x[0]) / x_line  # Calculate corresponding (scaled) y values
+    y_line = (y[0] / x[0]) / x_line       # Calculate corresponding (scaled) y values
 
-    plt.plot(x_line, y_line, linestyle='--', color='red', label='Perfect scaling')
+    plt.plot(x_line, y_line, linestyle='--',
+             color='red', label='Perfect scaling')
 
     # Adding title and labels
     plt.title("Scaling plot")
@@ -34,16 +44,28 @@ def process_files(file_list, output="plot.jpg"):
     # Show the legend
     plt.legend()
 
-    # Save the plot to a JPEG file
-    plt.savefig(output, format='jpeg')
+    # Save the plot to the specified file
+    plt.savefig(output, dpi=400, bbox_inches="tight")
 
 if __name__ == "__main__":
-    # The first command-line argument is the script name itself, so we skip it
-    output = sys.argv[1]
-    filenames = sys.argv[2:]
+    parser = argparse.ArgumentParser(
+        description=description,
+        epilog="Brought to you by HPC Carpentry"
+    )
 
-    if filenames:
-        process_files(filenames, output=output)
-    else:
-        print("No files provided.")
+    parser.add_argument(
+        "--output",
+        default="scaling-study.png",
+        help="Image file to write (PNG or JPG)",
+        required=True
+    )
 
+    parser.add_argument(
+        "inputs",
+        help="Amdahl terse output files (JSON)",
+        nargs="+"
+    )
+
+    args = parser.parse_args()
+
+    process_files(args.output, args.inputs)
