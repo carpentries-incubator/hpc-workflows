@@ -65,7 +65,6 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "--output",
-        default="scaling-study.png",
         help="Image file to write (PNG or JPG)",
         required=True
     )
