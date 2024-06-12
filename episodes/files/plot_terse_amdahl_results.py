@@ -16,9 +16,19 @@ def process_files(output, file_list):
     value_tuples=[]
     for filename in file_list:
       # Open the JSON file and load data
-      with open(str(filename), 'r') as file:
-        data = json.load(file)
-      value_tuples.append((data['nproc'], data['execution_time']))
+      try:
+          with open(filename, 'r') as file:
+              data = json.load(file)
+          value_tuples.append((data['nproc'], data['execution_time']))
+      except FileNotFoundError:
+          print(f"Error: File {filename} not found.")
+          return
+      except json.JSONDecodeError:
+          print(f"Error: File {filename} is not a valid JSON.")
+          return
+      except KeyError:
+          print(f"Error: Missing required data in file {filename}.")
+          return
 
     # Sort the tuples
     sorted_list = sorted(value_tuples)
