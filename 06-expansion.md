@@ -119,7 +119,7 @@ curl -O https://ocaisa.github.io/hpc-workflows/files/plot_terse_amdahl_results.p
 The script `plot_terse_amdahl_results.py` needs a command line that looks like:
 
 ```bash
-python plot_terse_amdahl_results.py <output jpeg filename> <1st input file> <2nd input file> ...
+python plot_terse_amdahl_results.py --output <output image filename> <1st input file> <2nd input file> ...
 ```
 
 Let's introduce that into our `generate_run_files` rule:
@@ -129,7 +129,7 @@ rule generate_run_files:
     output: "p_{parallel_proportion}_runs.txt"
     input:  expand("p_{{parallel_proportion}}/runs/amdahl_run_{count}.json", count=NTASK_SIZES)
     shell:
-        "python plot_terse_amdahl_results.py {output} {input}"
+        "python plot_terse_amdahl_results.py --output {output} {input}"
 ```
 
 ::: challenge
@@ -146,7 +146,7 @@ rule generate_run_files:
     envmodules:
       "matplotlib"
     shell:
-        "python plot_terse_amdahl_results.py {output} {input}"
+        "python plot_terse_amdahl_results.py --output {output} {input}"
 ```
 
 ::::::
@@ -188,6 +188,7 @@ snakemake --profile cluster_profile/ p_0.8_scalability.jpg
 :::
 
 ::: challenge
+
 ## Bonus round
 
 Create a final rule that can be called directly and generates a scaling plot for
