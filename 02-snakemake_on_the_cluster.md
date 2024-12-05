@@ -185,8 +185,8 @@ rule:
     input: ...
     output: ...
     resources:
-        partition: <partition name>
-        runtime: <some number>
+        partition = <partition name>
+        runtime = <some number>
 ```
 
 and we can also use the profile to define default values for these options to
