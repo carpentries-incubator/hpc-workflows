@@ -37,6 +37,9 @@
     <loc>https://carpentries-incubator.github.io/hpc-workflows/amdahl_snakemake.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/citation.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/hpc-workflows/images.html</loc>
   </url>
   <url>
@@ -77,6 +80,9 @@
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/amdahl_snakemake.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/citation.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/hpc-workflows/instructor/images.html</loc>
