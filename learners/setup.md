@@ -23,5 +23,5 @@ instructions].
 
 If you are using an high-performance computing (HPC) system, there might be a
 version of snakemake preinstalled.
-In can be installed via [spack.io][snakemake-spack] or [EasyBuild][snakemake-easybuild].
+It can also be installed via [spack.io][snakemake-spack] or [EasyBuild][snakemake-easybuild].
 Please verify that the version installed is version 8 or newer.
