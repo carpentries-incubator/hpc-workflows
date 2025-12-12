@@ -2,53 +2,26 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
-
-## Data Sets
-
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
-
 ## Software Setup
 
-::::::::::::::::::::::::::::::::::::::: discussion
+### Shell
 
-### Details
+Snakemake is a command-line tool run on in a so-called shell.
+Please check [the installation instructions][shell-install] to ensure you have
+the corresponding software installed.
 
-Setup for different systems can be presented in dropdown menus via a `solution`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+### Python
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+Snakemake is a Python program.
+Please check [the installation instructions][python-install] to ensure you have
+a working Python environment.
 
-:::::::::::::::: solution
+### Snakemake
 
-### Windows
+Please install the *snakemake* software following [the snakemake installation
+instructions].
 
-Use PuTTY
-
-:::::::::::::::::::::::::
-
-:::::::::::::::: solution
-
-### MacOS
-
-Use Terminal.app
-
-:::::::::::::::::::::::::
-
-
-:::::::::::::::: solution
-
-### Linux
-
-Use Terminal
-
-:::::::::::::::::::::::::
-
+If you are using an high-performance computing (HPC) system, there might be a
+version of snakemake preinstalled.
+It can also be installed via [spack.io][snakemake-spack] or [EasyBuild][snakemake-easybuild].
+Please verify that the version installed is version 8 or newer.
