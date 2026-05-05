@@ -841,54 +841,54 @@ translation table:</p>
 <col width="18%">
 <col width="62%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>SLURM</th>
 <th>Snakemake</th>
 <th>Description</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>--partition</code></td>
 <td><code>slurm_partition</code></td>
 <td>the partition a rule/job is to use</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>--time</code></td>
 <td><code>runtime</code></td>
 <td>the walltime per job in minutes</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>--constraint</code></td>
 <td><code>constraint</code></td>
 <td>may hold features on some clusters</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>--mem</code></td>
 <td><code>mem, mem_mb</code></td>
 <td>memory a cluster node must</td>
 </tr>
-<tr class="odd">
+<tr>
 <td></td>
 <td></td>
 <td>provide (mem: string with unit), mem_mb: int</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>--mem-per-cpu</code></td>
 <td><code>mem_mb_per_cpu</code></td>
 <td>memory per reserved CPU</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>--ntasks</code></td>
 <td><code>tasks</code></td>
 <td>number of concurrent tasks / ranks</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>--cpus-per-task</code></td>
 <td><code>cpus_per_task</code></td>
 <td>number of cpus per task (in case of SMP, rather use
 <code>threads</code>)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>--nodes</code></td>
 <td><code>nodes</code></td>
 <td>number of nodes</td>
@@ -1193,7 +1193,7 @@ to find out why?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1296,7 +1296,7 @@ so make that a default option of our profile (by setting it’s value to
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Update our cluster profile to</p>
 <div class="codewrapper sourceCode" id="cb6">
@@ -1332,29 +1332,29 @@ the relevant options appear near the bottom:</p>
 <col width="18%">
 <col width="62%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>SLURM</th>
 <th>Snakemake</th>
 <th>Description</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>…</td>
 <td>…</td>
 <td>…</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>--ntasks</code></td>
 <td><code>tasks</code></td>
 <td>number of concurrent tasks / ranks</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>--cpus-per-task</code></td>
 <td><code>cpus_per_task</code></td>
 <td>number of cpus per task (in case of SMP, rather use
 <code>threads</code>)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>--nodes</code></td>
 <td><code>nodes</code></td>
 <td>number of nodes</td>
@@ -1618,7 +1618,7 @@ requested file to the <code>output</code> from a rule)</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1722,7 +1722,7 @@ default value is 0.8) for the case where we have 6 parallel tasks.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2199,7 +2199,7 @@ environment module? Add this requirement to our rule.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2240,7 +2240,7 @@ Snakemake command:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2268,7 +2268,7 @@ Snakemake command:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2362,8 +2362,8 @@ any links that you are not going to use.
   "url": "https://carpentries-incubator.github.io/hpc-workflows/instructor/aio.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-workflows/instructor/aio.html",
   "dateCreated": "2023-04-19",
-  "dateModified": "2026-04-28",
-  "datePublished": "2026-04-28"
+  "dateModified": "2026-05-05",
+  "datePublished": "2026-05-05"
 }
 
   </script><script>

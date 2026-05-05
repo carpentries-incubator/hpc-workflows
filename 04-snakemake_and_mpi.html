@@ -385,7 +385,7 @@ to find out why?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -486,7 +486,7 @@ so make that a default option of our profile (by setting it’s value to
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Update our cluster profile to</p>
 <div class="codewrapper sourceCode" id="cb6">
@@ -514,20 +514,20 @@ single rule?</p>
 currently explicitly supports MPI is the Slurm executor (lucky for us!).
 If we look back at our Slurm to Snakemake translation table we notice
 the relevant options appear near the bottom:</p>
-<table class="table"><colgroup><col width="18%"><col width="18%"><col width="62%"></colgroup><thead><tr class="header"><th>SLURM</th>
+<table class="table"><colgroup><col width="18%"><col width="18%"><col width="62%"></colgroup><thead><tr><th>SLURM</th>
 <th>Snakemake</th>
 <th>Description</th>
-</tr></thead><tbody><tr class="odd"><td>…</td>
+</tr></thead><tbody><tr><td>…</td>
 <td>…</td>
 <td>…</td>
-</tr><tr class="even"><td><code>--ntasks</code></td>
+</tr><tr><td><code>--ntasks</code></td>
 <td><code>tasks</code></td>
 <td>number of concurrent tasks / ranks</td>
-</tr><tr class="odd"><td><code>--cpus-per-task</code></td>
+</tr><tr><td><code>--cpus-per-task</code></td>
 <td><code>cpus_per_task</code></td>
 <td>number of cpus per task (in case of SMP, rather use
 <code>threads</code>)</td>
-</tr><tr class="even"><td><code>--nodes</code></td>
+</tr><tr><td><code>--nodes</code></td>
 <td><code>nodes</code></td>
 <td>number of nodes</td>
 </tr></tbody></table><p>The one we are interested is <code>tasks</code> as we are only going
@@ -771,7 +771,7 @@ requested file to the <code>output</code> from a rule)</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -875,7 +875,7 @@ default value is 0.8) for the case where we have 6 parallel tasks.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -965,7 +965,7 @@ any links that you are not going to use.
   "identifier": "https://carpentries-incubator.github.io/hpc-workflows/04-snakemake_and_mpi.html",
   "dateCreated": "2023-04-19",
   "dateModified": "2024-05-02",
-  "datePublished": "2026-04-28"
+  "datePublished": "2026-05-05"
 }
 
   </script><script>
