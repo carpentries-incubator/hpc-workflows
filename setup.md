@@ -19,7 +19,7 @@ a working Python environment.
 ### Snakemake
 
 Please install the *snakemake* software following [the snakemake installation
-instructions].
+instructions](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html).
 
 If you are using an high-performance computing (HPC) system, there might be a
 version of snakemake preinstalled.

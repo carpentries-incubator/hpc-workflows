@@ -12,5 +12,5 @@
 "episodes/06-expansion.md" "5dc7189afd60b0c4febd35e0a0e5f38d" "site/built/06-expansion.md" "2024-06-20"
 "instructors/instructor-notes.md" "cae72b6712578d74a49fea7513099f8c" "site/built/instructor-notes.md" "2023-05-02"
 "learners/reference.md" "1c7cc4e229304d9806a13f69ca1b8ba4" "site/built/reference.md" "2023-05-02"
-"learners/setup.md" "8fc3e7fddc4d8610a7e5825f8fec345a" "site/built/setup.md" "2025-12-12"
+"learners/setup.md" "66f595c7affd7512e66ed2cbe50e879d" "site/built/setup.md" "2026-05-24"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2023-05-02"
