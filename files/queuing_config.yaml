@@ -1,0 +1,6 @@
+#  snakemake -j 3 --cluster "sbatch -N 1 -n {resources.tasks} -p node"
+cluster: 
+  sbatch
+    --partition=node
+    --nodes=1
+    --tasks={resources.tasks}
