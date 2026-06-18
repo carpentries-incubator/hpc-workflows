@@ -1,10 +1,11 @@
-# Tame Your Workflow with Snakemake
+# Building High-Performance Computing Workflows with Snakemake
 
-In [HPC Intro][hpc-intro], learners explored the scheduler on their cluster by
-launching a program called [`amdahl`][amdahl]. The objective of this lesson is
-to adapt the manual job submission process into a repeatable, reusable workflow
-with minimal human intervention. This is accomplished using
-[Snakemake][snakemake], a modern workflow engine.
+In [Using HPC Systems][hpc-intro], learners explored the scheduler on
+their cluster by launching a program called [`amdahl`][amdahl]. The
+objective of this lesson is to adapt the manual job submission process
+into a repeatable, reusable workflow with minimal human
+intervention. This is accomplished using [Snakemake][snakemake], a
+modern workflow engine.
 
 If you are interested in learning more about workflow tools, please visit
 [The Workflows Community][workflows-community].
