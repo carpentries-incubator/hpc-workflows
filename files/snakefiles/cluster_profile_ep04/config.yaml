@@ -1,0 +1,8 @@
+---
+printshellcmds: true
+jobs: 3
+executor: slurm
+default-resources:
+  - mem_mb_per_cpu=3600
+  - runtime=2
+use-envmodules: true
