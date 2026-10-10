@@ -54,9 +54,56 @@ your workflow, so let's redirect the output to a file:
 
 ## Making a Snakefile
 
-Edit a new text file named `Snakefile`.
+Edit a new text file named `Snakefile`. 
+First, create an empty `Snakefile` in your working directory:
 
-Contents of `Snakefile`:
+::: group-tab
+
+### Linux
+
+```bash
+touch Snakefile
+```
+
+### macOS
+
+```bash
+touch Snakefile
+```
+
+### Windows
+
+```powershell
+New-Item -Name "Snakefile" -ItemType "file"
+```
+
+:::
+
+Now open the file in an editor of your choice:
+
+::: group-tab
+
+### Linux
+
+```bash
+nano Snakefile
+```
+
+### macOS
+
+```bash
+open -a TextEdit Snakefile
+```
+
+### Windows
+
+```powershell
+notepad Snakefile
+```
+
+:::
+
+and add the following content to the `Snakefile`:
 
 ```python
 rule hostname_login:
@@ -88,12 +135,31 @@ rule hostname_login:
 
 :::
 
-Back in the shell we'll run our new rule. At this point, if there were any
-missing quotes, bad indents, etc., we may see an error.
+Back in the shell we'll can run our new rule with the following command: 
 
 ```bash
+snakemake --jobs 1 --printshellcmds hostname_login
+# or in short
 snakemake -j1 -p hostname_login
 ```
+
+If there were any missing quotes, bad indents, etc., we may see an error.
+The `--jobs` (`-j`) option sets the maximum number of parallel jobs to run,
+and `--printshellcmds` (`-p`) prints each shell command as it is executed,
+which is useful for debugging. To explore all available options:
+
+```bash
+snakemake --help
+```
+
+To look up a specific option, pipe the help output into `less`:
+
+```bash
+snakemake --help | less
+```
+
+Then type `/` followed by the option you want, e.g. `/-p`, and press Enter to
+jump to the first match. Press `n` to jump to the next match, and `q` to quit.
 
 ::: callout
 
@@ -144,7 +210,7 @@ and then make sure we have the `snakemake` command available
 ```output
 /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/amd/zen3/software/snakemake/8.2.1-foss-2023a/bin/snakemake
 ```
-
+If everything is set up, try to run the command again:
 ```bash
 snakemake -j1 -p hostname_login
 ```
@@ -153,26 +219,26 @@ snakemake -j1 -p hostname_login
 ::: challenge
 ## Running Snakemake
 
-Run `snakemake --help | less` to see the help for all available options.
-What does the `-p` option in the `snakemake` command above do?
+Run `snakemake --help | less` to explore the available options.
+What does the `--dryrun` option do?
 
-1. Protects existing output files
-1. Prints the shell commands that are being run to the terminal
-1. Tells Snakemake to only run one process at a time
-1. Prompts the user for the correct input file
+1. Deletes output files from previous runs
+1. Shows what rules would be run without actually executing them
+1. Runs only the first rule in the Snakefile
+1. Downloads any missing input files automatically
 
 :::::: hint
-You can search in the text by pressing <kbd>/</kbd>,
+Type `/-dryrun` and press <kbd>Enter</kbd> to jump straight to it,
 and quit back to the shell with <kbd>q</kbd>.
 ::::::
 
 :::::: solution
-(2) Prints the shell commands that are being run to the terminal
+(2) Shows what rules would be run without actually executing them 
 
-This is such a useful thing we don't know why it isn't the default! The `-j1`
-option is what tells Snakemake to only run one process at a time, and we'll
-stick with this for now as it makes things simpler. Answer 4 is a total
-red-herring, as Snakemake never prompts interactively for user input.
+`--dryrun` (or `-n`) is a useful Snakemake options that lets you check whether 
+your workflow is set up correctly before committing to a full run. It is good 
+practice to always do a dry run first, especially on an HPC cluster where jobs 
+consume real resources and queue time.
 ::::::
 :::
 
